@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.card.CardOrderGoodsItemMapper">
+    
+    <resultMap type="CardOrderGoodsItem" id="CardOrderGoodsItemResult">
+        <result property="id"    column="id"    />
+        <result property="orderId"    column="order_id"    />
+        <result property="limitTime"    column="limit_time"    />
+        <result property="status"    column="status"    />
+        <result property="facePrice"    column="face_price"    />
+        <result property="price"    column="price"    />
+        <result property="discountPicture"    column="discount_picture"    />
+        <result property="cardCipher"    column="card_cipher"    />
+        <result property="ecardPath"    column="ecard_path"    />
+        <result property="procurementTime"    column="procurement_time"    />
+        <result property="refundAmount"    column="refund_amount"    />
+        <result property="exchange"    column="exchange"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="barCode"    column="bar_code"    />
+        <result property="deliveryTime"    column="delivery_time"    />
+    </resultMap>
+
+    <sql id="selectCardOrderGoodsItemVo">
+        select id,delivery_time, bar_code,order_id,limit_time, status, face_price, price, discount_picture, card_cipher, ecard_path, procurement_time, refund_amount, exchange, create_by, create_time, update_by, update_time from card_order_goods_item
+    </sql>
+
+    <select id="selectCardOrderGoodsItemList" parameterType="CardOrderGoodsItem" resultMap="CardOrderGoodsItemResult">
+        <include refid="selectCardOrderGoodsItemVo"/>
+        <where>  
+<!--            <if test="orderId != null  and orderId != ''"> and order_id = #{orderId}</if>-->
+<!--            <if test="status != null "> and status = #{status}</if>-->
+<!--            <if test="facePrice != null "> and face_price = #{facePrice}</if>-->
+<!--            <if test="price != null "> and price = #{price}</if>-->
+            <if test="cardCipher != null  and cardCipher != ''"> and card_cipher = #{cardCipher}</if>
+        </where>
+    </select>
+    
+    <select id="selectCardOrderGoodsItemById" parameterType="String" resultMap="CardOrderGoodsItemResult">
+        <include refid="selectCardOrderGoodsItemVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectByOrderId" parameterType="String" resultMap="CardOrderGoodsItemResult">
+        <include refid="selectCardOrderGoodsItemVo"/>
+        where order_id = #{orderId}
+    </select>
+    <insert id="insertCardOrderGoodsItem" parameterType="CardOrderGoodsItem">
+        insert into card_order_goods_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="orderId != null">order_id,</if>
+            <if test="limitTime != null">limit_time,</if>
+            <if test="status != null">status,</if>
+            <if test="facePrice != null">face_price,</if>
+            <if test="price != null">price,</if>
+            <if test="discountPicture != null">discount_picture,</if>
+            <if test="cardCipher != null">card_cipher,</if>
+            <if test="ecardPath != null">ecard_path,</if>
+            <if test="procurementTime != null">procurement_time,</if>
+            <if test="refundAmount != null">refund_amount,</if>
+            <if test="exchange != null">exchange,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="deliveryTime != null">delivery_time,</if>
+
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="orderId != null">#{orderId},</if>
+            <if test="discountName != null">#{discountName},</if>
+            <if test="brandName != null">#{brandName},</if>
+            <if test="limitTime != null">#{limitTime},</if>
+            <if test="status != null">#{status},</if>
+            <if test="facePrice != null">#{facePrice},</if>
+            <if test="price != null">#{price},</if>
+            <if test="discountPicture != null">#{discountPicture},</if>
+            <if test="cardCipher != null">#{cardCipher},</if>
+            <if test="ecardPath != null">#{ecardPath},</if>
+            <if test="procurementTime != null">#{procurementTime},</if>
+            <if test="refundAmount != null">#{refundAmount},</if>
+            <if test="exchange != null">#{exchange},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="deliveryTime != null">#{delivery_time},</if>
+
+        </trim>
+    </insert>
+
+    <update id="updateCardOrderGoodsItem" parameterType="CardOrderGoodsItem">
+        update card_order_goods_item
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="orderId != null">order_id = #{orderId},</if>
+            <if test="limitTime != null">limit_time = #{limitTime},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="facePrice != null">face_price = #{facePrice},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="discountPicture != null">discount_picture = #{discountPicture},</if>
+            <if test="cardCipher != null">card_cipher = #{cardCipher},</if>
+            <if test="ecardPath != null">ecard_path = #{ecardPath},</if>
+            <if test="procurementTime != null">procurement_time = #{procurementTime},</if>
+            <if test="refundAmount != null">refund_amount = #{refundAmount},</if>
+            <if test="exchange != null">exchange = #{exchange},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="barCode != null">bar_code = #{barCode},</if>
+            <if test="deliveryTime != null">delivery_time = #{deliveryTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCardOrderGoodsItemById" parameterType="String">
+        delete from card_order_goods_item where id = #{id}
+    </delete>
+
+    <delete id="deleteCardOrderGoodsItemByIds" parameterType="String">
+        delete from card_order_goods_item where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

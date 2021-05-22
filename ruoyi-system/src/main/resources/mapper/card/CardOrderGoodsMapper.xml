@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.card.CardOrderGoodsMapper">
+    
+    <resultMap type="CardOrderGoods" id="CardOrderGoodsResult">
+        <result property="id"    column="id"    />
+        <result property="goodsId"    column="goods_id"    />
+        <result property="orderId"    column="order_id"    />
+        <result property="goodsName"    column="goods_name"    />
+        <result property="totalQuantity"    column="total_quantity"    />
+        <result property="totalPrice"    column="total_price"    />
+        <result property="goodsPicture"    column="goods_picture"    />
+        <result property="price"    column="price"    />
+    </resultMap>
+
+    <sql id="selectCardOrderGoodsVo">
+        select id, goods_id, order_id, goods_name, total_quantity, total_price, goods_picture, price from card_order_goods
+    </sql>
+
+    <select id="selectCardOrderGoodsList" parameterType="CardOrderGoods" resultMap="CardOrderGoodsResult">
+        <include refid="selectCardOrderGoodsVo"/>
+        <where>  
+            <if test="goodsId != null  and goodsId != ''"> and goods_id = #{goodsId}</if>
+            <if test="orderId != null  and orderId != ''"> and order_id = #{orderId}</if>
+            <if test="goodsName != null  and goodsName != ''"> and goods_name like concat('%', #{goodsName}, '%')</if>
+            <if test="totalQuantity != null "> and total_quantity = #{totalQuantity}</if>
+            <if test="totalPrice != null "> and total_price = #{totalPrice}</if>
+            <if test="goodsPicture != null  and goodsPicture != ''"> and goods_picture = #{goodsPicture}</if>
+            <if test="price != null "> and price = #{price}</if>
+        </where>
+    </select>
+    
+    <select id="selectCardOrderGoodsById" parameterType="String" resultMap="CardOrderGoodsResult">
+        <include refid="selectCardOrderGoodsVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertCardOrderGoods" parameterType="CardOrderGoods">
+        insert into card_order_goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="goodsId != null">goods_id,</if>
+            <if test="orderId != null">order_id,</if>
+            <if test="goodsName != null">goods_name,</if>
+            <if test="totalQuantity != null">total_quantity,</if>
+            <if test="totalPrice != null">total_price,</if>
+            <if test="goodsPicture != null">goods_picture,</if>
+            <if test="price != null">price,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="goodsId != null">#{goodsId},</if>
+            <if test="orderId != null">#{orderId},</if>
+            <if test="goodsName != null">#{goodsName},</if>
+            <if test="totalQuantity != null">#{totalQuantity},</if>
+            <if test="totalPrice != null">#{totalPrice},</if>
+            <if test="goodsPicture != null">#{goodsPicture},</if>
+            <if test="price != null">#{price},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCardOrderGoods" parameterType="CardOrderGoods">
+        update card_order_goods
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="goodsId != null">goods_id = #{goodsId},</if>
+            <if test="orderId != null">order_id = #{orderId},</if>
+            <if test="goodsName != null">goods_name = #{goodsName},</if>
+            <if test="totalQuantity != null">total_quantity = #{totalQuantity},</if>
+            <if test="totalPrice != null">total_price = #{totalPrice},</if>
+            <if test="goodsPicture != null">goods_picture = #{goodsPicture},</if>
+            <if test="price != null">price = #{price},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCardOrderGoodsById" parameterType="String">
+        delete from card_order_goods where id = #{id}
+    </delete>
+
+    <delete id="deleteCardOrderGoodsByIds" parameterType="String">
+        delete from card_order_goods where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.osu.AppUserMapper">
+
+    <resultMap type="AppUser" id="AppUserResult">
+        <result property="id"    column="id"    />
+        <result property="userName"    column="user_name"    />
+        <result property="openid"    column="openid"    />
+        <result property="nickName"    column="nick_name"    />
+        <result property="avatarUrl"    column="avatar_url"    />
+        <result property="gender"    column="gender"    />
+        <result property="country"    column="country"    />
+        <result property="province"    column="province"    />
+        <result property="city"    column="city"    />
+        <result property="mobile"    column="mobile"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="sessionKey"    column="session_key"    />
+        <result property="lastvisitTime"    column="lastvisit_time"    />
+        <result property="userType"    column="user_type"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectAppUserVo">
+        select id, user_name,openid, nick_name, avatar_url, gender, country, province, city, mobile, create_time, session_key, lastvisit_time, user_type, status from app_user
+    </sql>
+
+<!--    <select id="selectAppUserList" parameterType="AppUser" resultMap="AppUserResult">-->
+<!--        <include refid="selectAppUserVo"/>-->
+<!--        <where>-->
+<!--            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>-->
+<!--            <if test="status != null  and status != ''"> and status = #{status}</if>-->
+<!--        </where>-->
+<!--    </select>-->
+
+    <select id="selectUserByOpenId" parameterType="String" resultMap="AppUserResult">
+        <include refid="selectAppUserVo"/>
+        where openid = #{openid}
+    </select>
+
+    <select id="selectUserId" parameterType="String" resultMap="AppUserResult">
+        <include refid="selectAppUserVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertAppUser" parameterType="AppUser" >
+        insert into app_user (
+        <if test="id != null and id != ''">id,</if>
+        <if test="userName != null and userName != '' ">user_name, </if>
+        <if test="openid != null and openid != '' ">openid, </if>
+        <if test="nickName != null and nickName != '' ">nick_name, </if>
+        <if test="avatarUrl != null and avatarUrl != '' ">avatar_url, </if>
+        <if test="gender != null and gender != '' ">gender, </if>
+        <if test="country != null and country != '' ">country, </if>
+        <if test="province != null and province != '' ">province, </if>
+        <if test="city != null and city != '' ">city, </if>
+        <if test="mobile != null and mobile != ''">mobile,</if>
+        <if test="createTime != null">create_time,</if>
+        <if test="sessionKey != null">session_key,</if>
+        <if test="lastvisitTime != null">lastvisit_time,</if>
+        <if test="userType != null">user_type,</if>
+        <if test="status != null">status,</if>
+        create_time
+        )values(
+        <if test="id != null and id != ''">#{id},</if>
+        <if test="userName != null and userName != '' ">#{userName}, </if>
+        <if test="openid != null and openid != '' ">#{openid}, </if>
+        <if test="nickName != null and nickName != '' ">#{nickName}, </if>
+        <if test="avatarUrl != null and avatarUrl != '' ">#{avatarUrl}, </if>
+        <if test="gender != null and gender != '' ">#{gender}, </if>
+        <if test="country != null and country != '' ">#{country}, </if>
+        <if test="province != null and province != '' ">#{province}, </if>
+        <if test="city != null and city != '' ">#{city}, </if>
+        <if test="mobile != null and mobile != ''">#{mobile},</if>
+        <if test="createTime != null">#{createTime},</if>
+        <if test="sessionKey != null">#{sessionKey},</if>
+        <if test="lastvisitTime != null">#{lastvisitTime},</if>
+        <if test="userType != null">#{userType},</if>
+        <if test="status != null">#{status},</if>
+        sysdate()
+        )
+    </insert>
+
+    <update id="updateAppUser" parameterType="AppUser">
+        update card_brand
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="openid != null">openid = #{openid},</if>
+            <if test="nickName != null">nick_name = #{nickName},</if>
+            <if test="avatarUrl != null">avatar_url = #{avatarUrl},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="country != null">country = #{country},</if>
+            <if test="province != null">province = #{province},</if>
+            <if test="city != null">city = #{city},</if>
+            <if test="mobile != null">mobile = #{mobile},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="sessionKey != null">session_key = #{sessionKey},</if>
+            <if test="lastvisitTime != null">lastvisit_time = #{lastvisitTime},</if>
+            <if test="userType != null">user_type = #{userType},</if>
+            <if test="status != null">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+
+</mapper>

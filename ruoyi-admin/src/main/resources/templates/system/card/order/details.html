@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('详情【订单】')" />
+</head>
+<body>
+<div class="main-content">
+    <form id="form-user-add" class="form-horizontal">
+        <h4 class="form-header h4">订单信息</h4>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b>订单状态：</b></label>
+                    <div class="col-sm-9">
+                        <p class=" badge badge-warning" th:if="${cardOrder.status==-10}">待支付</p>
+                        <p class=" badge badge-info" th:if="${cardOrder.status==10}">待发货</p>
+                        <p class=" badge badge-success" th:if="${cardOrder.status==20}">已发货</p>
+                        <p class=" badge badge-danger" th:if="${cardOrder.status==30}">已退款</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b>订单编号：</b></label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" id="orderId" th:text="${cardOrder.orderId}"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b>下单时间：</b></label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" th:text="${#dates.format(cardOrder.createTime, 'yyyy-MM-dd')}"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b>品牌商品：</b></label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" th:text="${cardOrder.brandName+'-'+cardOrder.discountName}"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b>益钱账户：</b></label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" th:text="${cardOrder.userName}"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b>真实姓名：</b></label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" th:text="${cardOrder.realName}"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b>支付金额：</b></label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" style="color: red" th:text="${cardOrder.lastPayAmount==null?'¥'+0:'¥'+cardOrder.lastPayAmount}"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b>支付时间：</b></label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" th:text="${#dates.format(cardOrder.payTime, 'yyyy-MM-dd')}"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b>配送方式：</b></label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" th:text="${cardOrder.deliveryType==10?'邮箱':'短信'}"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b th:text="${cardOrder.deliveryType==10?'接收邮箱：':'接收短信：'}"></b></label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" th:text="${cardOrder.deliveryInfo}"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b>详细地址：</b></label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" th:text="${cardOrder.fullAddress}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="form-header h4">礼品卡信息</h4>
+
+        <div class="row">
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-primary" onclick="autoDelivery()" >
+                    <i class="fa fa-send"></i> 自动发货
+                </a>
+                <a class="btn btn-success" onclick="manualDelivery()" >
+                    <i class="fa fa-send"></i> 手动发货
+                </a>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-12 select-table table-striped">
+                    <table id="bootstrap-table"></table>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-sm-offset-5 col-sm-10">
+    </div>
+</div>
+<th:block th:include="include :: footer" />
+<script th:inline="javascript">
+    var prefix = ctx + "system/card/order";
+    var currencyType = [[${@dict.getType('card_currency_type')}]];
+    var orderStatusType = [[${@dict.getType('card_order_status_type')}]];
+    var cardOrderItemList = [[${cardOrderItemList}]]
+    var cardOrder = [[${cardOrder}]]
+    var editCardCipher = [[${cardOrder}]]
+    var cipherFlag = [[${@permission.hasPermi('system:order:cipher')}]];
+
+
+    $(function() {
+        var options = {
+            detailUrl: prefix + "/details/{id}",
+            updateUrl: prefix + "/cipher/{id}",
+            modalName: "详情",
+            data: cardOrderItemList,
+            sidePagination: "client",
+            sortName: "roleSort",
+            showSearch: false,
+            showRefresh: false,
+            showToggle: false,
+            showColumns: false,
+            clickToSelect: true,
+            maintainSelected: true,
+            columns: [
+                {
+                    field: 'discountPicture',
+                    title: '图片',
+                    formatter: function (value, row, index) {
+                        return $.table.imageView(row.discountPicture, 350, 550);
+                    }
+                },
+                {
+                    title: '名称',
+                    formatter:function (value,row,index) {
+                        return cardOrder.discountName;
+                    }
+                },
+                {
+                    field: 'facePrice',
+                    title: '面值',
+                    sortable: true,
+                    formatter:function (value,row,index) {
+                        var currency = $.table.selectDictLabel(currencyType,cardOrder.currency);
+                        return currency+value;
+                    }
+                },
+                {
+                    field: 'price',
+                    title: '单价',
+                    sortable: true,
+                    cellStyle:{
+                        css:{"color":"red"}
+                    },
+                    formatter:function (value,row,index) {
+                        var currency = $.table.selectDictLabel(currencyType, cardOrder.currency);
+                        return currency+value;
+                    }
+                },
+                {
+                    field: 'status',
+                    title: '状态',
+                    formatter: function(value, row, index) {
+                        return $.table.selectDictLabel(orderStatusType, value);
+                    }
+                },
+                {
+                    field: 'deliveryTime',
+                    title: '发货日期',
+                    sortable: true,
+                    formatter:function (value,row,index){
+                        if(value!=null) {
+                            return $.common.dateFormat(new Date(value), "yyyy-MM-dd")
+                        }
+                    }
+                },
+                {
+                    field: 'cardCipher',
+                    title: '卡密',
+
+                },
+                {
+                    field: 'ecardPath',
+                    title: '采购电子卡',
+                    formatter: function (value, row, index) {
+                        var actions = [];
+                        if(row.ecardPath!=null){
+                            actions.push('<a href="'+row.ecardPath+'" target="_blank">查看</a>');
+                        }
+                        return actions.join('');
+                    }
+                },
+                {
+                    field: 'barCode',
+                    title: '用户电子卡',
+                    formatter: function (value, row, index) {
+                        var actions = [];
+                        if(row.ecardPath!=null){
+                            actions.push('<a href="'+row.barCode+'" target="_blank">查看</a>');
+                        }
+                        return actions.join('');
+                    }
+                },
+                {
+                    field: 'procurementTime',
+                    title: '采购日期',
+                    sortable: true,
+                },
+
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var actions = [];
+                        var isCardCipher = row.status==10?'':'disabled';
+                        var isDelivery = 'disabled';
+                        if(row.cardCipher!=null&&row.status==10){
+                            isDelivery = ''
+                        }
+                        actions.push('<a class="btn btn-success btn-xs '+isCardCipher  + cipherFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-unlock"></i>卡密</a> ');
+                        actions.push('<a class="btn btn-primary btn-xs disabled' + cipherFlag + '" href="javascript:void(0)" onclick="delivery(\'' + row.id + '\')"><i class="fa fa-send"></i>发货</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs '   + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-cny"></i>退款</a> ');
+                        return actions.join('');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+    /* 单个订单发货 */
+    function delivery(id) {
+        if(!cardOrder.pay){
+            $.modal.alertError("订单还未支付，无法进行发货操作！");
+        }else {
+            $.modal.confirm("确认要进行发货吗？", function () {
+                $.operate.post(prefix + "/delivery", {"id": id,"orderId":cardOrder.orderId,"status": 20,"cardCipher":cardOrder.cardCipher});
+                window.location.reload();
+            });
+
+        }
+    }
+
+    /* 批量订单自动发货 */
+    function autoDelivery() {
+        if(!cardOrder.pay){
+            $.modal.alertError("订单还未支付，无法进行发货操作！");
+        }else {
+            $.modal.confirm("确认要进行自动发货吗？", function () {
+                $.operate.post(prefix + "/autoDelivery", {"orderId":cardOrder.orderId});
+                window.location.reload();
+                window.opener.location.reload();
+
+            });
+
+        }
+    }
+    /* 批量订单手动发货 */
+    function manualDelivery() {
+        if(!cardOrder.pay){
+            $.modal.alertError("订单还未支付，无法进行发货操作！");
+        }else {
+            $.modal.confirm("确认要进行手动发货吗？", function () {
+                $.operate.post(prefix + "/manualDelivery", {"orderId":cardOrder.orderId});
+                window.location.reload();
+                window.opener.location.reload();
+
+            });
+
+        }
+    }
+
+</script>
+</body>
+</html>
