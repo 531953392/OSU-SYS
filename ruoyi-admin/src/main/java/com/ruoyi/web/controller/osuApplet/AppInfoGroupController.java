@@ -2,7 +2,6 @@ package com.ruoyi.web.controller.osuApplet;
 
 import java.util.List;
 
-import com.ruoyi.system.domain.osu.AppArticle;
 import com.ruoyi.system.domain.osu.AppInfoGroup;
 import com.ruoyi.system.service.osu.IAppInfoGroupService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -28,7 +27,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * @date 2021-05-25
  */
 @Controller
-@RequestMapping("/system/group")
+@RequestMapping("/system/infoGroup")
 public class AppInfoGroupController extends BaseController
 {
     private String prefix = "system/osu/group";

@@ -15,7 +15,7 @@
                                 <input type="text" name="userId"/>
                             </li>
                             <li>
-                                <label>情报站类型：</label>
+                                <label>情报类型：</label>
                                 <select name="articleTyle" th:with="type=${@dict.getType('sys_article_type')}">
                                     <option value="">所有</option>
                                     <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
@@ -62,7 +62,7 @@
     <script th:inline="javascript">
         var editFlag = [[${@permission.hasPermi('system:group:edit')}]];
         var removeFlag = [[${@permission.hasPermi('system:group:remove')}]];
-        var prefix = ctx + "system/group";
+        var prefix = ctx + "system/infoGroup";
 
         $(function() {
             var options = {
