@@ -2,9 +2,9 @@ package com.ruoyi.web.controller.osuApplet;
 
 import java.util.List;
 
-import com.ruoyi.system.domain.card.CardBrand;
 import com.ruoyi.system.domain.osu.AppArticle;
-import com.ruoyi.system.service.osu.IAppArticleService;
+import com.ruoyi.system.domain.osu.AppInfoGroup;
+import com.ruoyi.system.service.osu.IAppInfoGroupService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,49 +25,49 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * 【请填写功能名称】Controller
  * 
  * @author dxs
- * @date 2021-05-23
+ * @date 2021-05-25
  */
 @Controller
-@RequestMapping("/system/article")
-public class AppArticleController extends BaseController
+@RequestMapping("/system/group")
+public class AppInfoGroupController extends BaseController
 {
-    private String prefix = "system/osu/article";
+    private String prefix = "system/osu/group";
 
     @Autowired
-    private IAppArticleService appArticleService;
+    private IAppInfoGroupService appInfoGroupService;
 
-    @RequiresPermissions("system:article:view")
+    @RequiresPermissions("system:group:view")
     @GetMapping()
-    public String article()
+    public String group()
     {
-        return prefix + "/article";
+        return prefix + "/group";
     }
 
     /**
      * 查询【请填写功能名称】列表
      */
-    @RequiresPermissions("system:article:list")
+    @RequiresPermissions("system:group:list")
     @PostMapping("/list")
     @ResponseBody
-    public TableDataInfo list(AppArticle appArticle)
+    public TableDataInfo list(AppInfoGroup appInfoGroup)
     {
         startPage();
-        List<AppArticle> list = appArticleService.selectAppArticleList(appArticle);
+        List<AppInfoGroup> list = appInfoGroupService.selectAppInfoGroupList(appInfoGroup);
         return getDataTable(list);
     }
 
     /**
      * 导出【请填写功能名称】列表
      */
-    @RequiresPermissions("system:article:export")
+    @RequiresPermissions("system:group:export")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
-    public AjaxResult export(AppArticle appArticle)
+    public AjaxResult export(AppInfoGroup appInfoGroup)
     {
-        List<AppArticle> list = appArticleService.selectAppArticleList(appArticle);
-        ExcelUtil<AppArticle> util = new ExcelUtil<AppArticle>(AppArticle.class);
-        return util.exportExcel(list, "article");
+        List<AppInfoGroup> list = appInfoGroupService.selectAppInfoGroupList(appInfoGroup);
+        ExcelUtil<AppInfoGroup> util = new ExcelUtil<AppInfoGroup>(AppInfoGroup.class);
+        return util.exportExcel(list, "group");
     }
 
     /**
@@ -82,59 +82,59 @@ public class AppArticleController extends BaseController
     /**
      * 新增保存【请填写功能名称】
      */
-    @RequiresPermissions("system:article:add")
+    @RequiresPermissions("system:group:add")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
-    public AjaxResult addSave(AppArticle appArticle)
+    public AjaxResult addSave(AppInfoGroup appInfoGroup)
     {
-        return toAjax(appArticleService.insertAppArticle(appArticle));
+        return toAjax(appInfoGroupService.insertAppInfoGroup(appInfoGroup));
     }
 
     /**
      * 修改【请填写功能名称】
      */
-    @GetMapping("/edit/{articleId}")
-    public String edit(@PathVariable("articleId") Long articleId, ModelMap mmap)
+    @GetMapping("/edit/{infoId}")
+    public String edit(@PathVariable("infoId") String infoId, ModelMap mmap)
     {
-        AppArticle appArticle = appArticleService.selectAppArticleById(articleId);
-        mmap.put("appArticle", appArticle);
+        AppInfoGroup appInfoGroup = appInfoGroupService.selectAppInfoGroupById(infoId);
+        mmap.put("appInfoGroup", appInfoGroup);
         return prefix + "/edit";
     }
 
     /**
      * 修改保存【请填写功能名称】
      */
-    @RequiresPermissions("system:article:edit")
+    @RequiresPermissions("system:group:edit")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
-    public AjaxResult editSave(AppArticle appArticle)
+    public AjaxResult editSave(AppInfoGroup appInfoGroup)
     {
-        return toAjax(appArticleService.updateAppArticle(appArticle));
+        return toAjax(appInfoGroupService.updateAppInfoGroup(appInfoGroup));
     }
 
     /**
      * 删除【请填写功能名称】
      */
-    @RequiresPermissions("system:article:remove")
+    @RequiresPermissions("system:group:remove")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
     {
-        return toAjax(appArticleService.deleteAppArticleByIds(ids));
+        return toAjax(appInfoGroupService.deleteAppInfoGroupByIds(ids));
     }
 
     /**
      * 状态修改
      */
     @Log(title = "状态管理", businessType = BusinessType.UPDATE)
-    @RequiresPermissions("system:article:edit")
+    @RequiresPermissions("system:group:edit")
     @PostMapping("/changeStatus")
     @ResponseBody
-    public AjaxResult changeStatus(AppArticle appArticle)
+    public AjaxResult changeStatus(AppInfoGroup appInfoGroup)
     {
-        return toAjax(appArticleService.changeStatus(appArticle));
+        return toAjax(appInfoGroupService.changeStatus(appInfoGroup));
     }
 }

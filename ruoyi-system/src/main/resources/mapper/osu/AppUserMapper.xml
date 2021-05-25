@@ -3,10 +3,9 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.system.mapper.osu.AppUserMapper">
-
+    
     <resultMap type="AppUser" id="AppUserResult">
         <result property="id"    column="id"    />
-        <result property="userName"    column="user_name"    />
         <result property="openid"    column="openid"    />
         <result property="nickName"    column="nick_name"    />
         <result property="avatarUrl"    column="avatar_url"    />
@@ -18,74 +17,80 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="createTime"    column="create_time"    />
         <result property="sessionKey"    column="session_key"    />
         <result property="lastvisitTime"    column="lastvisit_time"    />
-        <result property="userType"    column="user_type"    />
         <result property="status"    column="status"    />
+        <result property="userType"    column="user_type"    />
+        <result property="userName"    column="user_name"    />
     </resultMap>
 
     <sql id="selectAppUserVo">
-        select id, user_name,openid, nick_name, avatar_url, gender, country, province, city, mobile, create_time, session_key, lastvisit_time, user_type, status from app_user
+        select id, openid, nick_name, avatar_url, gender, country, province, city, mobile, create_time, session_key, lastvisit_time, status, user_type, user_name from app_user
     </sql>
 
-<!--    <select id="selectAppUserList" parameterType="AppUser" resultMap="AppUserResult">-->
-<!--        <include refid="selectAppUserVo"/>-->
-<!--        <where>-->
-<!--            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>-->
-<!--            <if test="status != null  and status != ''"> and status = #{status}</if>-->
-<!--        </where>-->
-<!--    </select>-->
-
-    <select id="selectUserByOpenId" parameterType="String" resultMap="AppUserResult">
+    <select id="selectAppUserList" parameterType="AppUser" resultMap="AppUserResult">
         <include refid="selectAppUserVo"/>
-        where openid = #{openid}
+        <where>  
+            <if test="openid != null  and openid != ''"> and openid = #{openid}</if>
+            <if test="nickName != null  and nickName != ''"> and nick_name like concat('%', #{nickName}, '%')</if>
+            <if test="avatarUrl != null  and avatarUrl != ''"> and avatar_url = #{avatarUrl}</if>
+            <if test="gender != null "> and gender = #{gender}</if>
+            <if test="country != null  and country != ''"> and country = #{country}</if>
+            <if test="province != null  and province != ''"> and province = #{province}</if>
+            <if test="city != null  and city != ''"> and city = #{city}</if>
+            <if test="mobile != null  and mobile != ''"> and mobile = #{mobile}</if>
+            <if test="sessionKey != null  and sessionKey != ''"> and session_key = #{sessionKey}</if>
+            <if test="lastvisitTime != null "> and lastvisit_time = #{lastvisitTime}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="userType != null "> and user_type = #{userType}</if>
+            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
+        </where>
     </select>
-
-    <select id="selectUserId" parameterType="String" resultMap="AppUserResult">
+    
+    <select id="selectAppUserById" parameterType="String" resultMap="AppUserResult">
         <include refid="selectAppUserVo"/>
         where id = #{id}
     </select>
-
-    <insert id="insertAppUser" parameterType="AppUser" >
-        insert into app_user (
-        <if test="id != null and id != ''">id,</if>
-        <if test="userName != null and userName != '' ">user_name, </if>
-        <if test="openid != null and openid != '' ">openid, </if>
-        <if test="nickName != null and nickName != '' ">nick_name, </if>
-        <if test="avatarUrl != null and avatarUrl != '' ">avatar_url, </if>
-        <if test="gender != null and gender != '' ">gender, </if>
-        <if test="country != null and country != '' ">country, </if>
-        <if test="province != null and province != '' ">province, </if>
-        <if test="city != null and city != '' ">city, </if>
-        <if test="mobile != null and mobile != ''">mobile,</if>
-        <if test="createTime != null">create_time,</if>
-        <if test="sessionKey != null">session_key,</if>
-        <if test="lastvisitTime != null">lastvisit_time,</if>
-        <if test="userType != null">user_type,</if>
-        <if test="status != null">status,</if>
-        create_time
-        )values(
-        <if test="id != null and id != ''">#{id},</if>
-        <if test="userName != null and userName != '' ">#{userName}, </if>
-        <if test="openid != null and openid != '' ">#{openid}, </if>
-        <if test="nickName != null and nickName != '' ">#{nickName}, </if>
-        <if test="avatarUrl != null and avatarUrl != '' ">#{avatarUrl}, </if>
-        <if test="gender != null and gender != '' ">#{gender}, </if>
-        <if test="country != null and country != '' ">#{country}, </if>
-        <if test="province != null and province != '' ">#{province}, </if>
-        <if test="city != null and city != '' ">#{city}, </if>
-        <if test="mobile != null and mobile != ''">#{mobile},</if>
-        <if test="createTime != null">#{createTime},</if>
-        <if test="sessionKey != null">#{sessionKey},</if>
-        <if test="lastvisitTime != null">#{lastvisitTime},</if>
-        <if test="userType != null">#{userType},</if>
-        <if test="status != null">#{status},</if>
-        sysdate()
-        )
+        
+    <insert id="insertAppUser" parameterType="AppUser">
+        insert into app_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="openid != null">openid,</if>
+            <if test="nickName != null">nick_name,</if>
+            <if test="avatarUrl != null">avatar_url,</if>
+            <if test="gender != null">gender,</if>
+            <if test="country != null">country,</if>
+            <if test="province != null">province,</if>
+            <if test="city != null">city,</if>
+            <if test="mobile != null">mobile,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="sessionKey != null">session_key,</if>
+            <if test="lastvisitTime != null">lastvisit_time,</if>
+            <if test="status != null">status,</if>
+            <if test="userType != null">user_type,</if>
+            <if test="userName != null">user_name,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="openid != null">#{openid},</if>
+            <if test="nickName != null">#{nickName},</if>
+            <if test="avatarUrl != null">#{avatarUrl},</if>
+            <if test="gender != null">#{gender},</if>
+            <if test="country != null">#{country},</if>
+            <if test="province != null">#{province},</if>
+            <if test="city != null">#{city},</if>
+            <if test="mobile != null">#{mobile},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="sessionKey != null">#{sessionKey},</if>
+            <if test="lastvisitTime != null">#{lastvisitTime},</if>
+            <if test="status != null">#{status},</if>
+            <if test="userType != null">#{userType},</if>
+            <if test="userName != null">#{userName},</if>
+         </trim>
     </insert>
 
     <update id="updateAppUser" parameterType="AppUser">
-        update card_brand
+        update app_user
         <trim prefix="SET" suffixOverrides=",">
-            <if test="userName != null">user_name = #{userName},</if>
             <if test="openid != null">openid = #{openid},</if>
             <if test="nickName != null">nick_name = #{nickName},</if>
             <if test="avatarUrl != null">avatar_url = #{avatarUrl},</if>
@@ -97,11 +102,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="sessionKey != null">session_key = #{sessionKey},</if>
             <if test="lastvisitTime != null">lastvisit_time = #{lastvisitTime},</if>
-            <if test="userType != null">user_type = #{userType},</if>
             <if test="status != null">status = #{status},</if>
+            <if test="userType != null">user_type = #{userType},</if>
+            <if test="userName != null">user_name = #{userName},</if>
         </trim>
         where id = #{id}
     </update>
 
+    <delete id="deleteAppUserById" parameterType="String">
+        delete from app_user where id = #{id}
+    </delete>
+
+    <delete id="deleteAppUserByIds" parameterType="String">
+        delete from app_user where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>

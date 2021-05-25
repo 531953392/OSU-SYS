@@ -1,6 +1,8 @@
 package com.ruoyi.system.service.osu;
 
 import java.util.List;
+
+import com.ruoyi.system.domain.card.CardBrand;
 import com.ruoyi.system.domain.osu.AppArticle;
 
 /**
@@ -58,4 +60,6 @@ public interface IAppArticleService
      * @return 结果
      */
     public int deleteAppArticleById(Long articleId);
+
+    public int changeStatus(AppArticle appArticle);
 }

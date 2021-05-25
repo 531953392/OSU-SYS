@@ -3,6 +3,7 @@ package com.ruoyi.system.service.osu.impl;
 import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.ShiroUtils;
 import com.ruoyi.common.utils.sql.SnowflakeIdWorker;
+import com.ruoyi.system.domain.card.CardBrand;
 import com.ruoyi.system.domain.osu.AppArticle;
 import com.ruoyi.system.mapper.osu.AppArticleMapper;
 import com.ruoyi.system.service.osu.IAppArticleService;
@@ -99,5 +100,10 @@ public class AppArticleServiceImpl implements IAppArticleService
     public int deleteAppArticleById(Long articleId)
     {
         return appArticleMapper.deleteAppArticleById(articleId);
+    }
+
+    @Override
+    public int changeStatus(AppArticle appArticle) {
+        return appArticleMapper.updateAppArticle(appArticle);
     }
 }
