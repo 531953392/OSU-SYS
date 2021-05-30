@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.ruoyi.system.mapper.osu.AppInfoGroupMapper">
     
     <resultMap type="AppInfoGroup" id="AppInfoGroupResult">
-        <result property="infoId"    column="info_id"    />
+        <result property="id"    column="id"    />
         <result property="userId"    column="user_id"    />
         <result property="infoType"    column="info_type"    />
         <result property="infoContent"    column="info_content"    />
@@ -18,10 +18,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="imageUrl1"    column="image_url_1"    />
         <result property="imageUrl2"    column="image_url_2"    />
         <result property="imageUrl3"    column="image_url_3"    />
+        <result property="imageUrl4"    column="image_url_4"    />
+        <result property="userName"    column="user_name"    />
+        <result property="userNickName"    column="user_nick_name"    />
+        <result property="userAvatarUrl"    column="user_avatar_url"    />
     </resultMap>
 
     <sql id="selectAppInfoGroupVo">
-        select info_id, user_id, info_type, info_content, status, create_by, create_time, update_by, update_time, remark, image_url_1, image_url_2, image_url_3 from app_info_group
+        select id, user_id, info_type, info_content, status, create_by, create_time, update_by, update_time, remark, image_url_1, image_url_2, image_url_3, image_url_4,user_name,user_nick_name,user_avatar_url from app_info_group
     </sql>
 
     <select id="selectAppInfoGroupList" parameterType="AppInfoGroup" resultMap="AppInfoGroupResult">
@@ -31,21 +35,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="infoType != null "> and info_type = #{infoType}</if>
             <if test="infoContent != null  and infoContent != ''"> and info_content = #{infoContent}</if>
             <if test="status != null  and status != ''"> and status = #{status}</if>
-            <if test="imageUrl1 != null  and imageUrl1 != ''"> and image_url_1 = #{imageUrl1}</if>
-            <if test="imageUrl2 != null  and imageUrl2 != ''"> and image_url_2 = #{imageUrl2}</if>
-            <if test="imageUrl3 != null  and imageUrl3 != ''"> and image_url_3 = #{imageUrl3}</if>
         </where>
     </select>
     
     <select id="selectAppInfoGroupById" parameterType="String" resultMap="AppInfoGroupResult">
         <include refid="selectAppInfoGroupVo"/>
-        where info_id = #{infoId}
+        where id = #{id}
     </select>
         
     <insert id="insertAppInfoGroup" parameterType="AppInfoGroup">
         insert into app_info_group
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="infoId != null">info_id,</if>
+            <if test="id != null">id,</if>
             <if test="userId != null">user_id,</if>
             <if test="infoType != null">info_type,</if>
             <if test="infoContent != null">info_content,</if>
@@ -55,12 +56,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">update_by,</if>
             <if test="updateTime != null">update_time,</if>
             <if test="remark != null">remark,</if>
-            <if test="imageUrl1 != null">image_url_1,</if>
-            <if test="imageUrl2 != null">image_url_2,</if>
-            <if test="imageUrl3 != null">image_url_3,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="infoId != null">#{infoId},</if>
+            <if test="id != null">#{id},</if>
             <if test="userId != null">#{userId},</if>
             <if test="infoType != null">#{infoType},</if>
             <if test="infoContent != null">#{infoContent},</if>
@@ -70,9 +68,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">#{updateBy},</if>
             <if test="updateTime != null">#{updateTime},</if>
             <if test="remark != null">#{remark},</if>
-            <if test="imageUrl1 != null">#{imageUrl1},</if>
-            <if test="imageUrl2 != null">#{imageUrl2},</if>
-            <if test="imageUrl3 != null">#{imageUrl3},</if>
          </trim>
     </insert>
 
@@ -92,17 +87,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="imageUrl2 != null">image_url_2 = #{imageUrl2},</if>
             <if test="imageUrl3 != null">image_url_3 = #{imageUrl3},</if>
         </trim>
-        where info_id = #{infoId}
+        where id = #{id}
     </update>
 
     <delete id="deleteAppInfoGroupById" parameterType="String">
-        delete from app_info_group where info_id = #{infoId}
+        delete from app_info_group where id = #{id}
     </delete>
 
     <delete id="deleteAppInfoGroupByIds" parameterType="String">
-        delete from app_info_group where info_id in 
-        <foreach item="infoId" collection="array" open="(" separator="," close=")">
-            #{infoId}
+        delete from app_info_group where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
         </foreach>
     </delete>
 

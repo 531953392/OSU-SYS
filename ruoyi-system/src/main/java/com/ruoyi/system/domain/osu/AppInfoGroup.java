@@ -16,7 +16,7 @@ public class AppInfoGroup extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 情报站ID */
-    private String infoId;
+    private String id;
 
     /** 用户ID */
     @Excel(name = "用户ID")
@@ -46,21 +46,60 @@ public class AppInfoGroup extends BaseEntity
     @Excel(name = "上传图片3")
     private String imageUrl3;
 
-    public void setInfoId(String infoId) 
-    {
-        this.infoId = infoId;
+    /** 上传图片3 */
+    @Excel(name = "上传图片4")
+    private String imageUrl4;
+
+    /** 上传图片3 */
+    @Excel(name = "用户账号")
+    private String userName;
+
+    /** 上传图片3 */
+    @Excel(name = "用户昵称")
+    private String userNickName;
+
+
+    /** 上传图片3 */
+    @Excel(name = "用户头像")
+    private String userAvatarUrl;
+
+    public String getUserName() {
+        return userName;
     }
 
-    public String getInfoId() 
-    {
-        return infoId;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
-    public void setUserId(String userId) 
-    {
+
+    public String getUserNickName() {
+        return userNickName;
+    }
+
+    public void setUserNickName(String userNickName) {
+        this.userNickName = userNickName;
+    }
+
+    public String getUserAvatarUrl() {
+        return userAvatarUrl;
+    }
+
+    public void setUserAvatarUrl(String userAvatarUrl) {
+        this.userAvatarUrl = userAvatarUrl;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public String getUserId() 
+    public String getUserId()
     {
         return userId;
     }
@@ -119,10 +158,18 @@ public class AppInfoGroup extends BaseEntity
         return imageUrl3;
     }
 
+    public String getImageUrl4() {
+        return imageUrl4;
+    }
+
+    public void setImageUrl4(String imageUrl4) {
+        this.imageUrl4 = imageUrl4;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("infoId", getInfoId())
+            .append("id", getId())
             .append("userId", getUserId())
             .append("infoType", getInfoType())
             .append("infoContent", getInfoContent())
@@ -135,6 +182,10 @@ public class AppInfoGroup extends BaseEntity
             .append("imageUrl1", getImageUrl1())
             .append("imageUrl2", getImageUrl2())
             .append("imageUrl3", getImageUrl3())
+                .append("imageUrl4", getImageUrl4())
+                .append("userName", getUserName())
+                .append("userNickName", getUserNickName())
+                .append("userAvatarUrl", getUserAvatarUrl())
             .toString();
     }
 }

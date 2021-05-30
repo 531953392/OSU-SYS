@@ -2,6 +2,7 @@ package com.ruoyi.web.controller.osuApplet;
 
 import java.util.List;
 
+import com.ruoyi.system.domain.osu.AppArticle;
 import com.ruoyi.system.domain.osu.AppInfoGroup;
 import com.ruoyi.system.service.osu.IAppInfoGroupService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -136,4 +137,5 @@ public class AppInfoGroupController extends BaseController
     {
         return toAjax(appInfoGroupService.changeStatus(appInfoGroup));
     }
+
 }
