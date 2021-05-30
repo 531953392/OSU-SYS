@@ -94,8 +94,8 @@ public class AppInfoGroupController extends BaseController
     /**
      * 修改【请填写功能名称】
      */
-    @GetMapping("/edit/{infoId}")
-    public String edit(@PathVariable("infoId") String infoId, ModelMap mmap)
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") String infoId, ModelMap mmap)
     {
         AppInfoGroup appInfoGroup = appInfoGroupService.selectAppInfoGroupById(infoId);
         mmap.put("appInfoGroup", appInfoGroup);

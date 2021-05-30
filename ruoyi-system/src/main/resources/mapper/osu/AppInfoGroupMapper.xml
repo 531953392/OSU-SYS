@@ -22,10 +22,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="userName"    column="user_name"    />
         <result property="userNickName"    column="user_nick_name"    />
         <result property="userAvatarUrl"    column="user_avatar_url"    />
+        <result property="auditType"    column="audit_type"    />
+
     </resultMap>
 
     <sql id="selectAppInfoGroupVo">
-        select id, user_id, info_type, info_content, status, create_by, create_time, update_by, update_time, remark, image_url_1, image_url_2, image_url_3, image_url_4,user_name,user_nick_name,user_avatar_url from app_info_group
+        select id, user_id, info_type, info_content, status, create_by, create_time, update_by, update_time, remark, image_url_1, image_url_2, image_url_3, image_url_4,user_name,user_nick_name,user_avatar_url,audit_type from app_info_group
     </sql>
 
     <select id="selectAppInfoGroupList" parameterType="AppInfoGroup" resultMap="AppInfoGroupResult">
@@ -35,6 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="infoType != null "> and info_type = #{infoType}</if>
             <if test="infoContent != null  and infoContent != ''"> and info_content = #{infoContent}</if>
             <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="auditType != null  and auditType != ''"> and audit_type = #{auditType}</if>
         </where>
     </select>
     
@@ -83,9 +86,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">update_by = #{updateBy},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
             <if test="remark != null">remark = #{remark},</if>
-            <if test="imageUrl1 != null">image_url_1 = #{imageUrl1},</if>
-            <if test="imageUrl2 != null">image_url_2 = #{imageUrl2},</if>
-            <if test="imageUrl3 != null">image_url_3 = #{imageUrl3},</if>
+            <if test="auditType != null">audit_type = #{auditType},</if>
+
         </trim>
         where id = #{id}
     </update>

@@ -31,8 +31,13 @@ public class AppInfoGroup extends BaseEntity
     private String infoContent;
 
     /** 状态 */
-    @Excel(name = "状态")
+    @Excel(name = "状态" ,readConverterExp = "0=正常,1=关闭")
     private String status;
+
+    /** 审核状态 */
+    @Excel(name = "审核状态", readConverterExp = "10=待审核,20=审核通过,30=审核失败")
+    private int auditType;
+
 
     /** 上传图片1 */
     @Excel(name = "上传图片1")
@@ -62,6 +67,7 @@ public class AppInfoGroup extends BaseEntity
     /** 上传图片3 */
     @Excel(name = "用户头像")
     private String userAvatarUrl;
+
 
     public String getUserName() {
         return userName;
@@ -166,6 +172,14 @@ public class AppInfoGroup extends BaseEntity
         this.imageUrl4 = imageUrl4;
     }
 
+    public int getAuditType() {
+        return auditType;
+    }
+
+    public void setAuditType(int auditType) {
+        this.auditType = auditType;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -186,6 +200,8 @@ public class AppInfoGroup extends BaseEntity
                 .append("userName", getUserName())
                 .append("userNickName", getUserNickName())
                 .append("userAvatarUrl", getUserAvatarUrl())
+                .append("auditType", getAuditType())
+
             .toString();
     }
 }

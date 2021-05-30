@@ -1,96 +1,109 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('【请填写功能名称】列表')" />
+    <th:block th:include="include :: header('【请填写功能名称】列表')"/>
 </head>
 <body class="gray-bg">
-     <div class="container-div">
-        <div class="row">
-            <div class="col-sm-12 search-collapse">
-                <form id="formId">
-                    <div class="select-list">
-                        <ul>
-                            <li>
-                                <label>用户ID：</label>
-                                <input type="text" name="userId"/>
-                            </li>
-                            <li>
-                                <label>情报类型：</label>
-                                <select name="articleTyle" th:with="type=${@dict.getType('sys_info_type')}">
-                                    <option value="">所有</option>
-                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                            th:value="${dict.dictValue}"></option>
-                                </select>
-                            </li>
-                            <li>
-                                <label>状态：</label>
-                                <select name="status" th:with="type=${@dict.getType('sys_normal_disable')}">
-                                    <option value="">所有</option>
-                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                            th:value="${dict.dictValue}"></option>
-                                </select>
-                            </li>
-                            <li>
-                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
-                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
-                            </li>
-                        </ul>
-                    </div>
-                </form>
-            </div>
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <label>用户ID：</label>
+                            <input type="text" name="userId"/>
+                        </li>
+                        <li>
+                            <label>情报类型：</label>
+                            <select name="articleTyle" th:with="type=${@dict.getType('sys_info_type')}">
+                                <option value="">所有</option>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                                        th:value="${dict.dictValue}"></option>
+                            </select>
+                        </li>
+                        <li>
+                            <label>审核状态：</label>
+                            <select name="status" th:with="type=${@dict.getType('sys_info_audit')}">
+                                <option value="">所有</option>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                                        th:value="${dict.dictValue}"></option>
+                            </select>
+                        </li>
+                        <li>
+                            <label>启用状态：</label>
+                            <select name="status" th:with="type=${@dict.getType('sys_normal_disable')}">
+                                <option value="">所有</option>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                                        th:value="${dict.dictValue}"></option>
+                            </select>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i
+                                    class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i
+                                    class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
 
-            <div class="btn-group-sm" id="toolbar" role="group">
-                <a class="btn btn-success disabled" onclick="$.operate.add()" shiro:hasPermission="osu:group:add">
-                    <i class="fa fa-plus"></i> 添加
-                </a>
-                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="osu:group:edit">
-                    <i class="fa fa-edit"></i> 修改
-                </a>
-                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="osu:group:remove">
-                    <i class="fa fa-remove"></i> 删除
-                </a>
-                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="osu:group:export">
-                    <i class="fa fa-download"></i> 导出
-                </a>
-            </div>
-            <div class="col-sm-12 select-table table-striped">
-                <table id="bootstrap-table"></table>
-            </div>
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-success disabled" onclick="$.operate.add()" shiro:hasPermission="osu:group:add">
+                <i class="fa fa-plus"></i> 添加
+            </a>
+            <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="osu:group:edit">
+                <i class="fa fa-edit"></i> 修改
+            </a>
+            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()"
+               shiro:hasPermission="osu:group:remove">
+                <i class="fa fa-remove"></i> 删除
+            </a>
+            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="osu:group:export">
+                <i class="fa fa-download"></i> 导出
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
         </div>
     </div>
-    <th:block th:include="include :: footer" />
-    <script th:inline="javascript">
-        var infoType = [[${@dict.getType('sys_info_type')}]];
-        var editFlag = [[${@permission.hasPermi('system:group:edit')}]];
-        var removeFlag = [[${@permission.hasPermi('system:group:remove')}]];
-        var prefix = ctx + "system/infoGroup";
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var infoType = [[${@dict.getType('sys_info_type')}]];
+    var infoAudit = [[${@dict.getType('sys_info_audit')}]];
 
-        $(function() {
-            var options = {
-                url: prefix + "/list",
-                createUrl: prefix + "/add",
-                updateUrl: prefix + "/edit/{id}",
-                removeUrl: prefix + "/remove",
-                exportUrl: prefix + "/export",
-                modalName: "【情报站】",
-                columns: [{
-                    checkbox: true
+    var editFlag = [[${@permission.hasPermi('system:group:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('system:group:remove')}]];
+    var prefix = ctx + "system/infoGroup";
+
+    $(function () {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            exportUrl: prefix + "/export",
+            modalName: "【情报站】",
+            columns: [{
+                checkbox: true
+            },
+                // {
+                //     field: 'userId',
+                //     title: '用户ID'
+                // },
+                // {
+                //     field: 'userNickName',
+                //     title: '用户信息'
+                // },
+                {
+                    field: 'userAvatarUrl',
+                    title: '用户信息',
+                    formatter: function (value, row, index) {
+                        return $.table.imageView(value, 350, 550)+"  "+row.userNickName;
+                    }
                 },
-                    {
-                        field: 'userId',
-                        title: '用户ID'
-                    },
-                    {
-                        field: 'userNickName',
-                        title: '用户昵称'
-                    },
-                    {
-                        field: 'userAvatarUrl',
-                        title: '用户头像',
-                        formatter: function (value, row, index) {
-                            return $.table.imageView(value, 350, 550);
-                        }
-                    },
 
                 {
                     field: 'infoType',
@@ -99,27 +112,39 @@
                         return $.table.selectDictLabel(infoType, value);
                     }
                 },
+
+                {
+                    field: 'imageUrl1',
+                    title: '情报站图片',
+                    formatter: function (value, row, index) {
+                        return $.table.imageView(row.imageUrl1, 350, 550)
+                            + $.table.imageView(row.imageUrl2, 350, 550)
+                            + $.table.imageView(row.imageUrl3, 350, 550)
+                            + $.table.imageView(row.imageUrl4, 350, 550)
+                    }
+                },
                 {
                     field: 'infoContent',
-                    title: '情报站内容'
+                    title: '情报站内容',
+                    formatter:function (value, row, index) {
+                        return  row.infoContent.substring(0,20)+'...'
+                    }
                 },
-                    {
-                        field: 'imageUrl1',
-                        title: '情报站图片',
-                        formatter: function (value, row, index) {
-                            return  $.table.imageView(row.imageUrl1, 350, 550)
-                                +$.table.imageView(row.imageUrl2, 350, 550)
-                                +$.table.imageView(row.imageUrl3, 350, 550)
-                                +$.table.imageView(row.imageUrl4, 350, 550)
-                        }
-                    },
                 {
                     field: 'status',
-                    title: '情报站状态',
+                    title: '启用状态',
                     formatter: function (value, row, index) {
                         return statusTools(row);
                     }
                 },
+                {
+                    field: 'auditType',
+                    title: '审核状态',
+                    formatter: function (value, row, index) {
+                        return $.table.selectDictLabel(infoAudit, value);
+                    }
+                },
+
                 {
                     field: 'remark',
                     title: '情报站备注'
@@ -128,38 +153,41 @@
                 {
                     title: '操作',
                     align: 'center',
-                    formatter: function(value, row, index) {
+                    formatter: function (value, row, index) {
+
+                        var showFlag = row.auditType==10?'':'disabled';
                         var actions = [];
-                        actions.push('<a class="btn btn-success btn-xs disabled' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        actions.push('<a class="btn btn-success btn-xs ' +showFlag+''+ editFlag + '" href="javascript:void(0)"  onclick="$.operate.editTab(\'' + row.id + '\')"><i class="fa fa-edit"></i>审核</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs disabled' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
                         return actions.join('');
                     }
                 }]
-            };
-            $.table.init(options);
-        });
-        /* 状态显示 */
-        function statusTools(row) {
-            if (row.status == 1) {
-                return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enable(\'' + row.id + '\')"></i> ';
-            } else {
-                return '<i class=\"fa fa-toggle-on text-info fa-2x\" onclick="disable(\'' + row.id + '\')"></i> ';
-            }
-        }
+        };
+        $.table.init(options);
+    });
 
-        /* 文章管理-停用 */
-        function disable(id) {
-            $.modal.confirm("确认要停用此情报站吗？", function () {
-                $.operate.post(prefix + "/changeStatus", {"id": id, "status": 1});
-            })
+    /* 状态显示 */
+    function statusTools(row) {
+        if (row.status == 1) {
+            return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enable(\'' + row.id + '\')"></i> ';
+        } else {
+            return '<i class=\"fa fa-toggle-on text-info fa-2x\" onclick="disable(\'' + row.id + '\')"></i> ';
         }
+    }
 
-        /* 文章管理-启用 */
-        function enable(id) {
-            $.modal.confirm("确认要启用此情报站吗？", function () {
-                $.operate.post(prefix + "/changeStatus", {"id": id, "status": 0});
-            })
-        }
-    </script>
+    /* 文章管理-停用 */
+    function disable(id) {
+        $.modal.confirm("确认要停用此情报站吗？", function () {
+            $.operate.post(prefix + "/changeStatus", {"id": id, "status": 1});
+        })
+    }
+
+    /* 文章管理-启用 */
+    function enable(id) {
+        $.modal.confirm("确认要启用此情报站吗？", function () {
+            $.operate.post(prefix + "/changeStatus", {"id": id, "status": 0});
+        })
+    }
+</script>
 </body>
 </html>
