@@ -85,7 +85,7 @@
 
         $(function () {
             $("#fileinput").fileinput({
-                uploadUrl: ctx + "common/uploadDir", //接受请求地址
+                uploadUrl: ctx + "ossFile/upload", //接受请求地址
                 uploadAsync: true, //默认异步上传
                 showUpload: true, //是否显示上传按钮,跟随文本框的那个
                 showRemove: false, //显示移除按钮,跟随文本框的那个
@@ -117,7 +117,7 @@
                 fileData.append("BaseDir", "/article");
                 $.ajax({
                     type: "POST",
-                    url: ctx + "common/uploadDir",
+                    url: ctx + "ossFile/upload",
                     data: fileData,
                     cache: false,
                     contentType: false,
@@ -125,7 +125,7 @@
                     dataType: 'json',
                     success: function (result) {
                         if (result.code == web_status.SUCCESS) {
-                            imageIds = result.fileName;
+                            imageIds = result.url;
                         } else {
                             $.modal.alertError(result.msg);
                         }
