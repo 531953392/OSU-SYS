@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.osu.mapper.AppApplyInfoMapper">
+    
+    <resultMap type="AppApplyInfo" id="AppApplyInfoResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="userName"    column="user_name"    />
+        <result property="userNickName"    column="user_nick_name"    />
+        <result property="userAvatarUrl"    column="user_avatar_url"    />
+        <result property="realName"    column="real_name"    />
+        <result property="wechat"    column="wechat"    />
+        <result property="grade"    column="grade"    />
+        <result property="major"    column="major"    />
+        <result property="mailAddress"    column="mail_address"    />
+        <result property="firstChoice"    column="first_choice"    />
+        <result property="secondChoice"    column="second_choice"    />
+        <result property="csssText1"    column="csss_text_1"    />
+        <result property="csssText2"    column="csss_text_2"    />
+        <result property="csssText3"    column="csss_text_3"    />
+        <result property="csssText4"    column="csss_text_4"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectAppApplyInfoVo">
+        select id, user_id, user_name, user_nick_name, user_avatar_url, real_name, wechat, grade, major, mail_address, first_choice, second_choice, csss_text_1, csss_text_2, csss_text_3, csss_text_4, create_by, create_time, update_by, update_time, status from app_apply_info
+    </sql>
+
+    <select id="selectAppApplyInfoList" parameterType="AppApplyInfo" resultMap="AppApplyInfoResult">
+        <include refid="selectAppApplyInfoVo"/>
+        <where>  
+            <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
+            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
+            <if test="userNickName != null  and userNickName != ''"> and user_nick_name like concat('%', #{userNickName}, '%')</if>
+            <if test="userAvatarUrl != null  and userAvatarUrl != ''"> and user_avatar_url = #{userAvatarUrl}</if>
+            <if test="realName != null  and realName != ''"> and real_name like concat('%', #{realName}, '%')</if>
+            <if test="wechat != null  and wechat != ''"> and wechat = #{wechat}</if>
+            <if test="grade != null "> and grade = #{grade}</if>
+            <if test="major != null  and major != ''"> and major = #{major}</if>
+            <if test="mailAddress != null  and mailAddress != ''"> and mail_address = #{mailAddress}</if>
+            <if test="firstChoice != null "> and first_choice = #{firstChoice}</if>
+            <if test="secondChoice != null  and secondChoice != ''"> and second_choice = #{secondChoice}</if>
+            <if test="csssText1 != null  and csssText1 != ''"> and csss_text_1 = #{csssText1}</if>
+            <if test="csssText2 != null  and csssText2 != ''"> and csss_text_2 = #{csssText2}</if>
+            <if test="csssText3 != null  and csssText3 != ''"> and csss_text_3 = #{csssText3}</if>
+            <if test="csssText4 != null  and csssText4 != ''"> and csss_text_4 = #{csssText4}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectAppApplyInfoById" parameterType="String" resultMap="AppApplyInfoResult">
+        <include refid="selectAppApplyInfoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertAppApplyInfo" parameterType="AppApplyInfo">
+        insert into app_apply_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="userName != null">user_name,</if>
+            <if test="userNickName != null">user_nick_name,</if>
+            <if test="userAvatarUrl != null">user_avatar_url,</if>
+            <if test="realName != null">real_name,</if>
+            <if test="wechat != null">wechat,</if>
+            <if test="grade != null">grade,</if>
+            <if test="major != null">major,</if>
+            <if test="mailAddress != null">mail_address,</if>
+            <if test="firstChoice != null">first_choice,</if>
+            <if test="secondChoice != null">second_choice,</if>
+            <if test="csssText1 != null">csss_text_1,</if>
+            <if test="csssText2 != null">csss_text_2,</if>
+            <if test="csssText3 != null">csss_text_3,</if>
+            <if test="csssText4 != null">csss_text_4,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="status != null">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="userName != null">#{userName},</if>
+            <if test="userNickName != null">#{userNickName},</if>
+            <if test="userAvatarUrl != null">#{userAvatarUrl},</if>
+            <if test="realName != null">#{realName},</if>
+            <if test="wechat != null">#{wechat},</if>
+            <if test="grade != null">#{grade},</if>
+            <if test="major != null">#{major},</if>
+            <if test="mailAddress != null">#{mailAddress},</if>
+            <if test="firstChoice != null">#{firstChoice},</if>
+            <if test="secondChoice != null">#{secondChoice},</if>
+            <if test="csssText1 != null">#{csssText1},</if>
+            <if test="csssText2 != null">#{csssText2},</if>
+            <if test="csssText3 != null">#{csssText3},</if>
+            <if test="csssText4 != null">#{csssText4},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="status != null">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAppApplyInfo" parameterType="AppApplyInfo">
+        update app_apply_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="userNickName != null">user_nick_name = #{userNickName},</if>
+            <if test="userAvatarUrl != null">user_avatar_url = #{userAvatarUrl},</if>
+            <if test="realName != null">real_name = #{realName},</if>
+            <if test="wechat != null">wechat = #{wechat},</if>
+            <if test="grade != null">grade = #{grade},</if>
+            <if test="major != null">major = #{major},</if>
+            <if test="mailAddress != null">mail_address = #{mailAddress},</if>
+            <if test="firstChoice != null">first_choice = #{firstChoice},</if>
+            <if test="secondChoice != null">second_choice = #{secondChoice},</if>
+            <if test="csssText1 != null">csss_text_1 = #{csssText1},</if>
+            <if test="csssText2 != null">csss_text_2 = #{csssText2},</if>
+            <if test="csssText3 != null">csss_text_3 = #{csssText3},</if>
+            <if test="csssText4 != null">csss_text_4 = #{csssText4},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="status != null">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAppApplyInfoById" parameterType="String">
+        delete from app_apply_info where id = #{id}
+    </delete>
+
+    <delete id="deleteAppApplyInfoByIds" parameterType="String">
+        delete from app_apply_info where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
