@@ -105,7 +105,11 @@
                 // },
                 {
                     field: 'articleUrl',
-                    title: '文章链接'
+                    title: '文章链接',
+                    formatter: function (value, row, index) {
+                        return '<a href="'+row.articleUrl+'" target="_blank"><i class=\'fa fa-weixin\'>查看文章</a>';
+
+                    }
                 },
                 {
                     field: 'status',
