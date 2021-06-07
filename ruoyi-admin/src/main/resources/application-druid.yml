@@ -6,6 +6,9 @@ spring:
         druid:
             # 主库数据源
             master:
+                url: jdbc:mysql://47.100.100.145:3306/osu?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+                username: osu
+                password: csss888.
 #                url: jdbc:mysql://106.14.180.98:3306/yiqianonline?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
 #                username: nbopendemon
 #                password: nbopenlvb
@@ -13,9 +16,6 @@ spring:
 #                username: nbuser
 #                password: 8]rD2yjPGrW-*7(N
 
-                url: jdbc:mysql://127.0.0.1:3306/osu?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-                username: root
-                password: 123456
             # 从库数据源
             slave:
                 # 从数据源开关/默认关闭

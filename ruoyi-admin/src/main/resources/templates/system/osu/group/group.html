@@ -50,17 +50,17 @@
         </div>
 
         <div class="btn-group-sm" id="toolbar" role="group">
-            <a class="btn btn-success disabled" onclick="$.operate.add()" shiro:hasPermission="osu:group:add">
+            <a class="btn btn-success disabled" onclick="$.operate.add()" shiro:hasPermission="system:group:add">
                 <i class="fa fa-plus"></i> 添加
             </a>
-            <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="osu:group:edit">
+            <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:group:edit">
                 <i class="fa fa-edit"></i> 修改
             </a>
             <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()"
-               shiro:hasPermission="osu:group:remove">
+               shiro:hasPermission="system:group:remove">
                 <i class="fa fa-remove"></i> 删除
             </a>
-            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="osu:group:export">
+            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:group:export">
                 <i class="fa fa-download"></i> 导出
             </a>
         </div>
