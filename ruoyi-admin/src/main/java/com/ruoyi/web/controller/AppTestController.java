@@ -15,8 +15,13 @@ public class AppTestController extends BaseController
     @GetMapping()
     public String brand()
     {
-        return "/app_h5/index";
+        return "/app_h5/index1";
     }
 
+    @GetMapping("/verifyOrderNo")
+    public String verifyOrder()
+    {
+        return "/app_h5/info1.html";
+    }
 
 }

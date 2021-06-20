@@ -42,6 +42,17 @@ public class AppArticle extends BaseEntity
     @Excel(name = "状态", readConverterExp = "0=正常,1=关闭")
     private String status;
 
+    @Excel(name = "排序")
+    private Long sort;
+
+    public Long getSort() {
+        return sort;
+    }
+
+    public void setSort(Long sort) {
+        this.sort = sort;
+    }
+
     public void setArticleId(String articleId)
     {
         this.articleId = articleId;

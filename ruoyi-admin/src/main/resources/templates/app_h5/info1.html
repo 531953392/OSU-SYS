@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zxx"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Zeo</title>
+
+    <!-- Fav Icons -->
+    <link rel="shortcut icon"  type="image/x-icon" th:href="@{/app_h5/assets/images/favicon.png}" >
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" th:href="@{/app_h5/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/app_h5/assets/css/responsive.css}">
+
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+
+</head>
+
+<body>
+<div class="page-wrapper">
+
+    <!-- Preloader -->
+    <div class="preloader"></div>
+
+
+    <!--====================================================================
+                            Start Header area
+    =====================================================================-->
+    <header class="main-header">
+
+        <div class="container-fluid">
+            <div class="header-inner">
+                <div class="main-logo">
+                    <a href="index.html"><img th:src="@{/app_h5/assets/images/logo.png}" alt="Logo"></a>
+                </div>
+                <div class="social-icons ml-auto mr-auto">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                </div>
+
+                <div class="menu-toggler">
+                    <button>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <nav class="main-menu">
+                    <div class="menu-close">
+                        <button><i class="flaticon-cancel"></i></button>
+                    </div>
+                    <ul>
+                        <li class="dropdown"><a href="#">Home</a>
+                            <ul>
+                                <li><a href="index.html">Home One</a></li>
+                                <li><a href="index2.html">Home Two</a></li>
+                                <li><a href="index3.html">Home Three</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="about.html">about me</a></li>
+                        <li class="dropdown"><a href="#">pages</a>
+                            <ul>
+                                <li><a href="team.html">team</a></li>
+                                <li><a href="pricing.html">pricing</a></li>
+                                <li><a href="404.html">404 Page</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="#">gallery</a>
+                            <ul>
+                                <li><a href="gallery-one.html">gallery one</a></li>
+                                <li><a href="gallery-two.html">gallery two</a></li>
+                                <li><a href="gallery-three.html">gallery three</a></li>
+                                <li><a href="gallery-four.html">gallery four</a></li>
+                                <li><a href="gallery-details.html">gallery details</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="#">blog</a>
+                            <ul>
+                                <li><a href="blog-grid.html">blog grid</a></li>
+                                <li><a href="blog-classic.html">blog classic</a></li>
+                                <li><a href="blog-details.html">blog details</a></li>
+                                <li><a href="blog-details-sidebar.html">details with sidebar</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">contact</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+
+    </header>
+    <!--====================================================================
+                            End Header area
+    =====================================================================-->
+
+
+
+    <!--问卷调查-->
+    <section class="pricing-page rel pt-10 mb-95">
+        <div class="container">
+            <div class="section-title text-center mb-50">
+                <h2>Questionnaire</h2>
+                <span class="separator"></span>
+            </div>
+            <div class="row">
+                <form action="" >
+                <div class="col-lg-4 col-md-6">
+                    <div class="price-single-item">
+                        <div class="price-bg">
+                            <img th:src="@{/app_h5/assets/images/pricing/price-bg1.png}" alt="Price BG">
+                        </div>
+                        <div class="price-content">
+                            <span class="">Question 1：</span>
+                        </div>
+<!--                        <h6 class="mb-10" style="color: #F8B2B4">-->
+<!--                           请问你的联系方式是：-->
+<!--                        </h6>-->
+                        <ul>
+                            <li><input class="radio" name="q1" type="radio" required>3 Months Online Storage</li>
+                            <li><input class="radio" name="q1" type="radio" required>250 Photos</li>
+                            <li><input class="radio" name="q1" type="radio" required>Photo Edited</li>
+                            <li><input class="radio" name="q1" type="radio" required>1 Cameraman</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="price-single-item">
+                        <div class="price-bg">
+                            <img th:src="@{/app_h5/assets/images/pricing/price-bg2.png}" alt="Price BG">
+                        </div>
+                        <div class="price-content">
+                            <span class="">Question 2：</span>
+                        </div>
+                        <ul>
+                            <li><input class="radio" name="q2" type="radio" required>6 Months Online Storage</li>
+                            <li><input class="radio" name="q2" type="radio" required>500 Photos</li>
+                            <li><input class="radio" name="q2" type="radio" required>Photo Edited</li>
+                            <li><input class="radio" name="q2" type="radio" required>2 Cameraman</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="price-single-item">
+                        <div class="price-bg">
+                            <img th:src="@{/app_h5/assets/images/pricing/price-bg3.png}" alt="Price BG">
+                        </div>
+                        <div class="price-content">
+                            <span class="">Question 3：</span>
+                        </div>
+                        <ul>
+                            <li><input class="radio" name="q3" type="radio" required>1 Year Online Storage</li>
+                            <li><input class="radio" name="q3" type="radio" required>1000 Photos</li>
+                            <li><input class="radio" name="q3" type="radio" required>Photo Edited</li>
+                            <li><input class="radio" name="q3" type="radio" required>3 Cameraman</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="price-single-item">
+                        <div class="price-bg">
+                            <img th:src="@{/app_h5/assets/images/pricing/price-bg1.png}" alt="Price BG">
+                        </div>
+                        <div class="price-content">
+                            <span class="">Question 4：</span>
+                        </div>
+                        <ul>
+                            <li><input class="radio" name="q4" type="radio" required>1 Year Online Storage</li>
+                            <li><input class="radio" name="q4" type="radio" required>1000 Photos</li>
+                            <li><input class="radio" name="q4" type="radio" required>Photo Edited</li>
+                            <li><input class="radio" name="q4" type="radio" required>3 Cameraman</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center col-md-12 " style="margin:20px"><a href="#" class="theme-btn style-5" >Send Message</a>
+                </div>
+                </form>
+            </div>
+        </div>
+        <div class="shape t-30 l-95 rotated">
+            <img th:src="@{/app_h5/assets/images/shapes/shape1.png}" alt="Shape">
+        </div>
+        <div class="shape l-2 b-50 rotated3d">
+            <img th:src="@{/app_h5/assets/images/shapes/shape2.png}" alt="Shape">
+        </div>
+        <div class="shape l-5 t-35 left-right">
+            <img th:src="@{/app_h5/assets/images/shapes/shape3.png}" alt="Shape">
+        </div>
+        <div class="shape b-0 r-0 shapeAnimationFour">
+            <img th:src="@{/app_h5/assets/images/shapes/shape4.png}" alt="Shape">
+        </div>
+        <div class="shape t-5 r-5 rotated">
+            <img th:src="@{/app_h5/assets/images/shapes/shape5.png}" alt="Shape">
+        </div>
+        <div class="shape b-0 r-5 rotated">
+            <img th:src="@{/app_h5/assets/images/shapes/shape6.png}" alt="Shape">
+        </div>
+        <div class="shape l-5 t-5 left-right">
+            <img th:src="@{/app_h5/assets/images/shapes/shape7.png}" alt="Shape">
+        </div>
+        <div class="shape l-5 t-105 shapeAnimationThree">
+            <img th:src="@{/app_h5/assets/images/shapes/shape9.png}" alt="Shape">
+        </div>
+    </section>
+
+
+    <!--====================================================================
+        Start Footer Section
+    =====================================================================-->
+    <footer class="footer-section overlay text-center pb-20" th:style="'background-image:url(' + @{/app_h5/assets/images/footer/footer-bg.png} + ');'">
+        <div class="container">
+
+            <div class="footer-call-action">
+                <img th:src="@{/app_h5/assets/images/footer/call-action.png}" alt="Call Action">
+                <h4>If You Have Any Questions About Us?? Please Contact.</h4>
+                <a href="contact.html" class="theme-btn style-three">CONTACT ME</a>
+            </div>
+
+            <div class="footer-logo mb-30">
+                <a href="index.html"><img th:src="@{/app_h5/assets/images/logo-white.png}" alt="Footer Logo"></a>
+            </div>
+
+            <div class="social-icons mb-20">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+
+            <div class="line"></div>
+
+            <!-- Copyright Area-->
+            <div class="copyright">
+                <p>Copyright &copy; 2021.Company name All rights reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!--====================================================================
+       End Footer Section
+    =====================================================================-->
+
+
+
+</div>
+<!--End pagewrapper-->
+
+
+<!-- Scroll Top Button -->
+<button class="scroll-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></button>
+
+<!-- jequery plugins -->
+<script th:src="@{/app_h5/assets/js/jquery.min.js}"></script>
+<script th:src="@{/app_h5/assets/js/bootstrap.min.js}"></script>
+<script th:src="@{/app_h5/assets/js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/app_h5/assets/js/skill.bars.jquery.js}"></script>
+<script th:src="@{/app_h5/assets/js/isotope.pkgd.min.js}"></script>
+<script th:src="@{/app_h5/assets/js/parallax.min.js}"></script>
+<script th:src="@{/app_h5/assets/js/audioplayer.js}"></script>
+<script th:src="@{/app_h5/assets/js/appear.js}"></script>
+<script th:src="@{/app_h5/assets/js/owl.js}"></script>
+<script th:src="@{/app_h5/assets/js/wow.js}"></script>
+
+<!-- Custom script -->
+<script th:src="@{/app_h5/assets/js/script.js}"></script>
+</body>
+
+</html>

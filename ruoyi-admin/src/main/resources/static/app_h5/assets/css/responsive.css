@@ -265,7 +265,7 @@
         padding: 35px 50px 40px 75px;
     }
     .price-single-item .price-content{
-        margin-bottom: 135px;
+        margin-bottom: 35px;
     }
 
     
@@ -409,11 +409,11 @@
 
 
 @media only screen and (max-width: 400px) {
-    .price-single-item {
-        padding: 35px 50px 40px;
+    .price-single-item{
+        padding: 20px 85px 5px 25px;
     }
     .price-bg {
-        height: 235px;
+        height: 85px;
     }
     .price-content {
         margin-bottom: 90px;

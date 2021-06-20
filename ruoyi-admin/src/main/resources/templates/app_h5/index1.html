@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+<html lang="zxx"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Zeo</title>
+    <!-- jequery plugins -->
+    <script src="../app_h5/assets/js/jquery.min.js" th:src="@{/app_h5/assets/js/jquery.min.js}"></script>
+    <script th:src="@{/app_h5/assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{/app_h5/assets/js/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/app_h5/assets/js/skill.bars.jquery.js}"></script>
+    <script th:src="@{/app_h5/assets/js/isotope.pkgd.min.js}"></script>
+    <script th:src="@{/app_h5/assets/js/parallax.min.js}"></script>
+    <script th:src="@{/app_h5/assets/js/audioplayer.js}"></script>
+    <script th:src="@{/app_h5/assets/js/appear.js}"></script>
+    <script th:src="@{/app_h5/assets/js/owl.js}"></script>
+    <script th:src="@{/app_h5/assets/js/wow.js}"></script>
+
+    <!-- Custom script -->
+    <script th:src="@{/app_h5/assets/js/script.js}"></script>
+    <!-- Fav Icons -->
+    <link rel="shortcut icon"  type="image/x-icon" th:href="@{/app_h5/assets/images/favicon.png}" >
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" th:href="@{/app_h5/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/app_h5/assets/css/responsive.css}">
+
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+
+</head>
+
+<body>
+    <div class="page-wrapper">
+
+        <!-- Preloader -->
+        <div class="preloader"></div>
+
+       
+        <!--==================================================================== 
+                                Start Header area
+        =====================================================================-->
+        <header class="main-header">
+            
+            <div class="container-fluid">
+                <div class="header-inner">
+                    <div class="main-logo">
+                        <a href="index.html"><img th:src="@{/app_h5/assets/images/logo.png}" alt="Logo"></a>
+                    </div>
+                    <div class="social-icons ml-auto mr-auto">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                    </div>
+
+                    <div class="menu-toggler">
+                        <button>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    
+                    <nav class="main-menu">
+                       <div class="menu-close">
+                           <button><i class="flaticon-cancel"></i></button>
+                       </div>
+                        <ul>
+                            <li class="dropdown"><a href="#">Home</a>
+                                <ul>
+                                    <li><a href="index.html">Home One</a></li>
+                                    <li><a href="index2.html">Home Two</a></li>
+                                    <li><a href="index3.html">Home Three</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="about.html">about me</a></li>
+                            <li class="dropdown"><a href="#">pages</a>
+                                <ul>
+                                    <li><a href="team.html">team</a></li>
+                                    <li><a href="pricing.html">pricing</a></li>
+                                    <li><a href="404.html">404 Page</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">gallery</a>
+                                <ul>
+                                    <li><a href="gallery-one.html">gallery one</a></li>
+                                    <li><a href="gallery-two.html">gallery two</a></li>
+                                    <li><a href="gallery-three.html">gallery three</a></li>
+                                    <li><a href="gallery-four.html">gallery four</a></li>
+                                    <li><a href="gallery-details.html">gallery details</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">blog</a>
+                                <ul>
+                                    <li><a href="blog-grid.html">blog grid</a></li>
+                                    <li><a href="blog-classic.html">blog classic</a></li>
+                                    <li><a href="blog-details.html">blog details</a></li>
+                                    <li><a href="blog-details-sidebar.html">details with sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="contact.html">contact</a></li>
+                        </ul>
+                    </nav>
+                    
+                </div>
+            </div>
+            
+        </header>
+        <!--==================================================================== 
+                                End Header area
+        =====================================================================-->
+
+
+        <!--==================================================================== 
+            Start Slider Section
+        =====================================================================-->
+        <section class="slider-section">
+            <div class="main-slider-carousel owl-carousel">
+                <div class="slider-single-item" th:style="'background-image:url(' + @{/app_h5/assets/images/slider/h1-1.png} + ');'">
+                    <div class="item-inner">
+                        <h2>Hi, I'M Zeo</h2>
+<!--                        <h2>Professional Photographer</h2>-->
+                        <a href="#" class="theme-btn">DOWNLOAD CV</a>
+                    </div>
+                </div>
+                <div class="slider-single-item" th:style="'background-image:url(' + @{/app_h5/assets/images/slider/h1-2.png} + ');'">
+                    <div class="item-inner">
+                        <h2>Hi, I'M Zeo</h2>
+<!--                        <h2>Professional Photographer</h2>-->
+                        <a href="#" class="theme-btn">DOWNLOAD CV</a>
+                    </div>
+                </div>
+                <div class="slider-single-item" th:style="'background-image:url(' + @{/app_h5/assets/images/slider/h1-3.png} + ');'">
+                    <div class="item-inner">
+                        <h2>Hi, I'M Zeo</h2>
+<!--                        <h2>Professional Photographer</h2>-->
+                        <a href="#" class="theme-btn">DOWNLOAD CV</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="shape t-30 l-95 rotated">
+                <img th:src="@{/app_h5/assets/images/shapes/shape1.png}" alt="Shape">
+            </div>
+            <div class="shape l-2 b-50 rotated3d">
+                <img th:src="@{/app_h5/assets/images/shapes/shape2.png}" alt="Shape">
+            </div>
+            <div class="shape b-0 r-5 shapeAnimationTwo">
+                <img th:src="@{/app_h5/assets/images/shapes/shape3.png}" alt="Shape">
+            </div>
+            
+        </section>
+        <!--==================================================================== 
+            End Slider Section
+        =====================================================================-->
+
+
+        <!--==================================================================== 
+            Start 输入订单
+        =====================================================================-->
+        <section class="testimonials rel text-center mb-50">
+            <div class="container">
+                <div class="section-title mb-50">
+                    <h2>Order Number Verification</h2>
+                    <span class="separator"></span>
+                </div>
+                <div class="testimonial-carousel owl-carousel">
+                    <div class="testimonial-item">
+                       <img  th:src="@{/app_h5/assets/images/testimonials/testimonial1.png}" alt="">
+                        <h4>Sunzida Akon</h4>
+<!--                        <h6>Australia</h6>-->
+<!--                        <div class="rattings">-->
+<!--                            <i class="fas fa-star"></i>-->
+<!--                            <i class="fas fa-star"></i>-->
+<!--                            <i class="fas fa-star"></i>-->
+<!--                            <i class="fas fa-star"></i>-->
+<!--                            <i class="fas fa-star"></i>-->
+<!--                        </div>-->
+<!--                        <i class="flaticon-quote"></i>-->
+                        <p>请填写订单号验证，可领取奖品！</p>
+                        <div class="widget search-widget">
+                            <form action="/app/verifyOrderNo" class="d-flex">
+                                <input type="search" required="" placeholder="此处填入订单号....">
+                                <button type="submit"><i class="flaticon-loupe"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shape l-5 t-0 shapeAnimationFive delay-0-2s">
+                <img th:src="@{/app_h5/assets/images/shapes/shape4.png}" alt="Shape">
+            </div>
+            <div class="shape t-0 r-5 rotated delay-2s">
+                <img th:src="@{/app_h5/assets/images/shapes/shape6.png}" alt="Shape">
+            </div>
+            <div class="shape z-1 t-70 l-30 shapeAnimationFour delay-1-2s">
+                <img th:src="@{/app_h5/assets/images/shapes/shape2.png}" alt="Shape">
+            </div>
+            <div class="shape t-90 r-10 rotated delay-0-5s">
+                <img th:src="@{/app_h5/assets/images/shapes/shape1.png}" alt="Shape">
+            </div>
+            <div class="shape l-10 t-95 shapeAnimationOne delay-1-5s">
+                <img  th:src="@{/app_h5/assets/images/shapes/shape3.png}" alt="Shape">
+            </div>
+
+        </section>
+        <!--====================================================================
+            End 输入订单
+        =====================================================================-->
+  
+      
+        <!--==================================================================== 
+            Start News Section
+        =====================================================================-->
+        <div class="news-section rel mb-120">
+            <div class="container">
+
+                <div class="section-title text-center mb-50">
+                    <h2>Hot Topic Articles</h2>
+                    <span class="separator"></span>
+                </div>
+
+                <div class="news-carousel owl-carousel">
+
+                    <div class="news-single-item">
+                        <a href="blog-details.html" class="details-btn"><i class="flaticon-external-link-symbol"></i></a>
+                        <div class="news-image">
+                            <img  th:src="@{/app_h5/assets/images/news/news1.png}"  alt="News Image">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-content-inner">
+                                <h4><a href="blog-details.html">Enjoying the natural beauty increases peace of mind</a></h4>
+                                <div class="admin-date-like">
+                                    <span class="admin"><i class="flaticon-user"></i> Admin</span>
+                                    <span class="date"><i class="flaticon-calendar"></i> 24 Jul 2020</span>
+                                    <span class="like"><i class="flaticon-heart"></i> 5.5k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-single-item">
+                        <a href="blog-details.html" class="details-btn"><i class="flaticon-external-link-symbol"></i></a>
+                        <div class="news-image">
+                            <img  th:src="@{/app_h5/assets/images/news/news2.png}"  alt="News Image">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-content-inner">
+                                <h4><a href="blog-details.html">Enjoying the natural beauty increases peace of mind</a></h4>
+                                <div class="admin-date-like">
+                                    <span class="admin"><i class="flaticon-user"></i> Admin</span>
+                                    <span class="date"><i class="flaticon-calendar"></i> 24 Jul 2020</span>
+                                    <span class="like"><i class="flaticon-heart"></i> 5.5k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-single-item">
+                        <a href="blog-details.html" class="details-btn"><i class="flaticon-external-link-symbol"></i></a>
+                        <div class="news-image">
+                            <img  th:src="@{/app_h5/assets/images/news/news3.png}"  alt="News Image">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-content-inner">
+                                <h4><a href="blog-details.html">Enjoying the natural beauty increases peace of mind</a></h4>
+                                <div class="admin-date-like">
+                                    <span class="admin"><i class="flaticon-user"></i> Admin</span>
+                                    <span class="date"><i class="flaticon-calendar"></i> 24 Jul 2020</span>
+                                    <span class="like"><i class="flaticon-heart"></i> 5.5k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-single-item">
+                        <a href="blog-details.html" class="details-btn"><i class="flaticon-external-link-symbol"></i></a>
+                        <div class="news-image">
+                            <img  th:src="@{/app_h5/assets/images/news/news1.png}"  alt="News Image">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-content-inner">
+                                <h4><a href="blog-details.html">Enjoying the natural beauty increases peace of mind</a></h4>
+                                <div class="admin-date-like">
+                                    <span class="admin"><i class="flaticon-user"></i> Admin</span>
+                                    <span class="date"><i class="flaticon-calendar"></i> 24 Jul 2020</span>
+                                    <span class="like"><i class="flaticon-heart"></i> 5.5k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="shape r-10 t-20 shapeAnimationThree">
+                <img  th:src="@{/app_h5/assets/images/shapes/shape8.png}"  alt="Shape">
+            </div>
+            <div class="shape l-5 t-105 down-up">
+                <img  th:src="@{/app_h5/assets/images/shapes/shape7.png}"  alt="Shape">
+            </div>
+
+        </div>
+        <!--==================================================================== 
+            End News Section
+        =====================================================================-->
+
+
+
+        <!--====================================================================
+            Start Footer Section
+        =====================================================================-->
+        <footer class="footer-section overlay text-center pb-20" th:style="'background-image:url(' + @{/app_h5/assets/images/footer/footer-bg.png} + ');'" >
+            <div class="container">
+
+                <div class="footer-call-action">
+                    <img th:src="@{/app_h5/assets/images/footer/call-action.png}" alt="Call Action">
+                    <h4>If You Have Any Questions About Us?? Please Contact.</h4>
+                    <a href="contact.html" class="theme-btn style-three">CONTACT ME</a>
+                </div>
+
+                <div class="footer-logo mb-30">
+                    <a href="index.html"><img  th:src="@{/app_h5/assets/images/logo-white.png}" alt="Footer Logo"></a>
+                </div>
+
+                <div class="social-icons mb-20">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+
+                <div class="line"></div>
+
+                <!-- Copyright Area-->
+                <div class="copyright">
+                    <p>Copyright &copy; 2021.Company name All rights reserved.</p>
+                </div>
+
+            </div>
+        </footer>
+        <!--====================================================================
+           End Footer Section
+        =====================================================================-->
+
+
+
+    </div>
+    <!--End pagewrapper-->
+</body>
+<!-- Scroll Top Button -->
+<button class="scroll-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></button>
+
+
+
+</html>

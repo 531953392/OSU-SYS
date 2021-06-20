@@ -17,10 +17,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="updateBy"    column="update_by"    />
         <result property="updateTime"    column="update_time"    />
         <result property="remark"    column="remark"    />
+        <result property="sort"    column="sort"    />
     </resultMap>
 
     <sql id="selectAppArticleVo">
-        select article_id, article_title, article_tyle, article_summary, article_url, article_logo, status, create_by, create_time, update_by, update_time, remark from app_article
+        select article_id, article_title, article_tyle, article_summary, article_url, article_logo, status, create_by, create_time, update_by, update_time, remark,sort from app_article
     </sql>
 
     <select id="selectAppArticleList" parameterType="AppArticle" resultMap="AppArticleResult">
@@ -32,6 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="articleUrl != null  and articleUrl != ''"> and article_url = #{articleUrl}</if>
             <if test="articleLogo != null  and articleLogo != ''"> and article_logo = #{articleLogo}</if>
             <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="sort != null "> and sort = #{sort}</if>
         </where>
     </select>
     
@@ -55,6 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">update_by,</if>
             <if test="updateTime != null">update_time,</if>
             <if test="remark != null">remark,</if>
+            <if test="sort != null and sort != '' ">sort, </if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="articleId != null">#{articleId},</if>
@@ -69,6 +72,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">#{updateBy},</if>
             <if test="updateTime != null">#{updateTime},</if>
             <if test="remark != null">#{remark},</if>
+            <if test="sort != null and sort != '' ">#{sort}, </if>
          </trim>
     </insert>
 
@@ -86,6 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">update_by = #{updateBy},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
             <if test="remark != null">remark = #{remark},</if>
+            <if test="sort != null">sort = #{sort},</if>
         </trim>
         where article_id = #{articleId}
     </update>
