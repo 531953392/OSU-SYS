@@ -99,6 +99,7 @@
                 //     field: 'userNickName',
                 //     title: '用户信息'
                 // },
+
                 {
                     field: 'userAvatarUrl',
                     title: '用户信息',
@@ -106,7 +107,11 @@
                         return $.table.imageView(value, 350, 550)+"  "+row.userNickName;
                     }
                 },
-
+                {
+                    field: 'createTime',
+                    title: '发布时间',
+                    sortable: true
+                },
                 {
                     field: 'infoType',
                     title: '情报站类型',
