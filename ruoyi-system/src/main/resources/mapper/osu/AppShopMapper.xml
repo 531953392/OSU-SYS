@@ -24,10 +24,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="image2"    column="image2"    />
         <result property="image3"    column="image3"    />
         <result property="image4"    column="image4"    />
+        <result property="menu_url"    column="menu_url"    />
     </resultMap>
 
     <sql id="selectAppShopVo">
-        select id, name, logo, type, address, introduction, hours, telephone, create_by, create_time, update_by, update_time, status, remark, sort, image1, image2, image3, image4 from app_shop
+        select id, name, logo, type, address, introduction, hours, telephone, create_by, create_time, update_by, update_time, status, remark, sort, image1, image2, image3, image4,menu_url from app_shop
     </sql>
 
     <select id="selectAppShopList" parameterType="AppShop" resultMap="AppShopResult">
@@ -46,6 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="image2 != null  and image2 != ''"> and image2 = #{image2}</if>
             <if test="image3 != null  and image3 != ''"> and image3 = #{image3}</if>
             <if test="image4 != null  and image4 != ''"> and image4 = #{image4}</if>
+            <if test="menu_url != null  and menu_url != ''"> and menu_url = #{menu_url}</if>
         </where>
     </select>
     
@@ -76,6 +78,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="image2 != null">image2,</if>
             <if test="image3 != null">image3,</if>
             <if test="image4 != null">image4,</if>
+            <if test="menu_url != null">menu_url,</if>
+
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">#{id},</if>
@@ -97,6 +101,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="image2 != null">#{image2},</if>
             <if test="image3 != null">#{image3},</if>
             <if test="image4 != null">#{image4},</if>
+            <if test="menu_url != null">#{menu_url},</if>
+
          </trim>
     </insert>
 
@@ -121,6 +127,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="image2 != null">image2 = #{image2},</if>
             <if test="image3 != null">image3 = #{image3},</if>
             <if test="image4 != null">image4 = #{image4},</if>
+            <if test="menu_url != null">menu_url = #{menu_url},</if>
+
         </trim>
         where id = #{id}
     </update>

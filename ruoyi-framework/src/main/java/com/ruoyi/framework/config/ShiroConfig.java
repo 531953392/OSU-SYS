@@ -287,6 +287,7 @@ public class ShiroConfig
         filterChainDefinitionMap.put("/login", "anon,captchaValidate");
         filterChainDefinitionMap.put("/app/**", "anon,captchaValidate");
         filterChainDefinitionMap.put("/app_h5/**", "anon,captchaValidate");
+        filterChainDefinitionMap.put("/h5_html/**", "anon,captchaValidate");
 
         // 注册相关
         filterChainDefinitionMap.put("/register", "anon,captchaValidate");

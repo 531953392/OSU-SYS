@@ -70,7 +70,27 @@ public class AppShop extends BaseEntity
     @Excel(name = "商家图片4")
     private String image4;
 
-    public void setId(String id) 
+    private String menu_url;
+
+    private String menu_url2;
+
+    public String getMenu_url2() {
+        return menu_url2;
+    }
+
+    public void setMenu_url2(String menu_url2) {
+        this.menu_url2 = menu_url2;
+    }
+
+    public String getMenu_url() {
+        return menu_url;
+    }
+
+    public void setMenu_url(String menu_url) {
+        this.menu_url = menu_url;
+    }
+
+    public void setId(String id)
     {
         this.id = id;
     }

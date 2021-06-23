@@ -133,6 +133,14 @@
                             + $.table.imageView(row.image3, 350, 550)
                     }
                 },
+                    {
+                        field: 'menu_url',
+                        title: '商家菜单',
+                        formatter: function (value, row, index) {
+                            return $.table.imageView(row.menu_url, 350, 550)
+                                + $.table.imageView(row.menu_url2, 350, 550)
+                        }
+                    },
                 {
                     title: '操作',
                     align: 'center',
