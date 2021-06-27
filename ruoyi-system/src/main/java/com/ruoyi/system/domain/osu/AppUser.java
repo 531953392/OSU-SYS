@@ -71,7 +71,57 @@ public class AppUser extends BaseEntity
     @Excel(name = "用户名-手机号")
     private String userName;
 
-    public void setId(String id) 
+    private String birthDay;
+
+    private String fullName;
+
+    private int vipCardStatus;
+
+    private Date applyCardTime;
+
+    private Date cardNumber;
+
+    public Date getApplyCardTime() {
+        return applyCardTime;
+    }
+
+    public void setApplyCardTime(Date applyCardTime) {
+        this.applyCardTime = applyCardTime;
+    }
+
+    public Date getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(Date cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public String getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(String birthDay) {
+        this.birthDay = birthDay;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public int getVipCardStatus() {
+        return vipCardStatus;
+    }
+
+    public void setVipCardStatus(int vipCardStatus) {
+        this.vipCardStatus = vipCardStatus;
+    }
+
+    public void setId(String id)
     {
         this.id = id;
     }

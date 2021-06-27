@@ -35,7 +35,6 @@ public class AppShopController extends BaseController
     @Autowired
     private IAppShopService appShopService;
 
-    @RequiresPermissions("system:shop:view")
     @GetMapping()
     public String shop()
     {
@@ -45,7 +44,6 @@ public class AppShopController extends BaseController
     /**
      * 查询【请填写功能名称】列表
      */
-    @RequiresPermissions("system:shop:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(AppShop appShop)
@@ -58,7 +56,6 @@ public class AppShopController extends BaseController
     /**
      * 导出【请填写功能名称】列表
      */
-    @RequiresPermissions("system:shop:export")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
@@ -81,7 +78,6 @@ public class AppShopController extends BaseController
     /**
      * 新增保存【请填写功能名称】
      */
-    @RequiresPermissions("system:shop:add")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -104,7 +100,6 @@ public class AppShopController extends BaseController
     /**
      * 修改保存【请填写功能名称】
      */
-    @RequiresPermissions("system:shop:edit")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -116,7 +111,6 @@ public class AppShopController extends BaseController
     /**
      * 删除【请填写功能名称】
      */
-    @RequiresPermissions("system:shop:remove")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody

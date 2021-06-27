@@ -43,7 +43,7 @@
                 <label class="col-sm-3 control-label is-required">商家菜单：</label>
                 <div class="col-sm-8">
                     <div class="file-loading">
-                        <input id="fileinput3" type="file"  multiple="multiple" name="menu_url" t>
+                        <input id="fileinput3" type="file"  name="menu_url" t>
                     </div>
                 </div>
             </div>
@@ -107,11 +107,8 @@
         var imge2 = [[${appShop.image2}]];
         var imge3 = [[${appShop.image3}]];
         var imge4 = [[${appShop.image4}]];
-        var imageIds =[];
-
+        var imageIds =[imge1,imge2,imge3];
         var menu_url = [[${appShop.menu_url}]];
-        var menu_url2 = [[${appShop.menu_url2}]];
-        var menu_urls =[];
 
         $("#form-shop-edit").validate({
             focusCleanup: true
@@ -127,8 +124,8 @@
                 $.modal.alertError("请上传商户LOGO");
                 return;
             }
-            if(menu_urls.length==0){
-                $.modal.alertError("至少上传1张商户菜单图片");
+            if(menu_url==""){
+                $.modal.alertError("请上传商户菜单图片");
                 return;
             };
             if ($.validate.form()) {
@@ -141,8 +138,8 @@
                 data.push({"name": "image1", "value": imge1});
                 data.push({"name": "image2", "value": imge2});
                 data.push({"name": "image3", "value": imge3});
-                data.push({"name": "menu_url", "value": menu_urls[0]});
-                data.push({"name": "menu_url2", "value": menu_urls[1]});
+                data.push({"name": "menu_url", "value": menu_url});
+                //data.push({"name": "menu_url2", "value": menu_urls[1]});
                 $.operate.save(prefix + "/edit",data);
             }
         }
@@ -216,7 +213,7 @@
                 language : 'zh',
                 overwriteInitial: false,
                 initialPreviewAsData: true,
-                initialPreview: [imge1,imge2,imge3]
+                initialPreview: imageIds
             }).on('fileuploaded', function(event, data, previewId, index){
                 for (var i=0;i<data.files.length;i++) {
                     var fileData = new FormData();
@@ -265,9 +262,8 @@
                 language : 'zh',
                 overwriteInitial: false,
                 initialPreviewAsData: true,
-                initialPreview: [menu_url,menu_url2]
+                initialPreview: [menu_url]
             }).on('fileuploaded', function(event, data, previewId, index){
-                for (var i=0;i<data.files.length;i++) {
                     var fileData = new FormData();
                     fileData.append("file", data.files[i]);
                     fileData.append("BaseDir", "/shop");
@@ -281,7 +277,7 @@
                         dataType: 'json',
                         success: function (result) {
                             if (result.code == web_status.SUCCESS) {
-                                menu_urls.push(result.url);
+                                menu_url = result.url;
                             } else {
                                 $.modal.alertError(result.msg);
                             }
@@ -290,7 +286,6 @@
                             $.modal.alertWarning("图片上传失败。");
                         }
                     });
-                }
             });
 
             //文本编辑器

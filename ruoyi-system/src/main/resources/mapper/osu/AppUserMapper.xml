@@ -20,10 +20,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="status"    column="status"    />
         <result property="userType"    column="user_type"    />
         <result property="userName"    column="user_name"    />
+
+        <result property="birthDay"    column="birth_day"    />
+        <result property="vipCardStatus"    column="vip_card_status"    />
+        <result property="fullName"    column="full_name"    />
+        <result property="applyCardTime"    column="apply_card_time"    />
+        <result property="cardNumber"    column="card_number"    />
     </resultMap>
 
     <sql id="selectAppUserVo">
-        select id, openid, nick_name, avatar_url, gender, country, province, city, mobile, create_time, session_key, lastvisit_time, status, user_type, user_name from app_user
+        select id, openid, nick_name, avatar_url, gender, country, province, city, mobile, create_time, session_key, lastvisit_time, status, user_type, user_name,birth_day,vip_card_status,full_name,apply_card_time,card_number from app_user
     </sql>
 
     <select id="selectAppUserList" parameterType="AppUser" resultMap="AppUserResult">
@@ -105,6 +111,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="status != null">status = #{status},</if>
             <if test="userType != null">user_type = #{userType},</if>
             <if test="userName != null">user_name = #{userName},</if>
+            <if test="vipCardStatus != null">vip_card_status = #{vipCardStatus},</if>
+
         </trim>
         where id = #{id}
     </update>

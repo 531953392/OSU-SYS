@@ -34,7 +34,6 @@ public class AppInfoGroupController extends BaseController
     @Autowired
     private IAppInfoGroupService appInfoGroupService;
 
-    @RequiresPermissions("system:group:view")
     @GetMapping()
     public String group()
     {
@@ -44,7 +43,6 @@ public class AppInfoGroupController extends BaseController
     /**
      * 查询【请填写功能名称】列表
      */
-    @RequiresPermissions("system:group:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(AppInfoGroup appInfoGroup)
@@ -57,7 +55,6 @@ public class AppInfoGroupController extends BaseController
     /**
      * 导出【请填写功能名称】列表
      */
-    @RequiresPermissions("system:group:export")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
@@ -80,7 +77,6 @@ public class AppInfoGroupController extends BaseController
     /**
      * 新增保存【请填写功能名称】
      */
-    @RequiresPermissions("system:group:add")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -103,7 +99,6 @@ public class AppInfoGroupController extends BaseController
     /**
      * 修改保存【请填写功能名称】
      */
-    @RequiresPermissions("system:group:edit")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -115,7 +110,6 @@ public class AppInfoGroupController extends BaseController
     /**
      * 删除【请填写功能名称】
      */
-    @RequiresPermissions("system:group:remove")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
@@ -128,7 +122,6 @@ public class AppInfoGroupController extends BaseController
      * 状态修改
      */
     @Log(title = "状态管理", businessType = BusinessType.UPDATE)
-    @RequiresPermissions("system:group:edit")
     @PostMapping("/changeStatus")
     @ResponseBody
     public AjaxResult changeStatus(AppInfoGroup appInfoGroup)

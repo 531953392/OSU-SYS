@@ -34,7 +34,6 @@ public class AppApplyInfoController extends BaseController
     @Autowired
     private IAppApplyInfoService appApplyInfoService;
 
-    @RequiresPermissions("system:info:view")
     @GetMapping()
     public String info()
     {
@@ -44,7 +43,6 @@ public class AppApplyInfoController extends BaseController
     /**
      * 查询【请填写功能名称】列表
      */
-    @RequiresPermissions("system:info:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(AppApplyInfo appApplyInfo)
@@ -57,7 +55,6 @@ public class AppApplyInfoController extends BaseController
     /**
      * 导出【请填写功能名称】列表
      */
-    @RequiresPermissions("system:info:export")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
@@ -80,7 +77,6 @@ public class AppApplyInfoController extends BaseController
     /**
      * 新增保存【请填写功能名称】
      */
-    @RequiresPermissions("system:info:add")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -103,7 +99,6 @@ public class AppApplyInfoController extends BaseController
     /**
      * 修改保存【请填写功能名称】
      */
-    @RequiresPermissions("system:info:edit")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -115,7 +110,6 @@ public class AppApplyInfoController extends BaseController
     /**
      * 删除【请填写功能名称】
      */
-    @RequiresPermissions("system:info:remove")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody

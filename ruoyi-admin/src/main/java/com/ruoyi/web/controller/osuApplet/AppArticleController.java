@@ -36,7 +36,6 @@ public class AppArticleController extends BaseController
     @Autowired
     private IAppArticleService appArticleService;
 
-    @RequiresPermissions("system:article:view")
     @GetMapping()
     public String article()
     {
@@ -46,7 +45,6 @@ public class AppArticleController extends BaseController
     /**
      * 查询【请填写功能名称】列表
      */
-    @RequiresPermissions("system:article:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(AppArticle appArticle)
@@ -59,7 +57,6 @@ public class AppArticleController extends BaseController
     /**
      * 导出【请填写功能名称】列表
      */
-    @RequiresPermissions("system:article:export")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
@@ -82,7 +79,6 @@ public class AppArticleController extends BaseController
     /**
      * 新增保存【请填写功能名称】
      */
-    @RequiresPermissions("system:article:add")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -105,7 +101,6 @@ public class AppArticleController extends BaseController
     /**
      * 修改保存【请填写功能名称】
      */
-    @RequiresPermissions("system:article:edit")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -117,7 +112,6 @@ public class AppArticleController extends BaseController
     /**
      * 删除【请填写功能名称】
      */
-    @RequiresPermissions("system:article:remove")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
@@ -130,7 +124,6 @@ public class AppArticleController extends BaseController
      * 状态修改
      */
     @Log(title = "状态管理", businessType = BusinessType.UPDATE)
-    @RequiresPermissions("system:article:edit")
     @PostMapping("/changeStatus")
     @ResponseBody
     public AjaxResult changeStatus(AppArticle appArticle)

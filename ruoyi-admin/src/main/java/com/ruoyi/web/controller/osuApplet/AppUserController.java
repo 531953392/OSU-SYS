@@ -35,7 +35,6 @@ public class AppUserController extends BaseController
     @Autowired
     private IAppUserService appUserService;
 
-    @RequiresPermissions("system:appUser:view")
     @GetMapping()
     public String user()
     {
@@ -45,7 +44,6 @@ public class AppUserController extends BaseController
     /**
      * 查询【请填写功能名称】列表
      */
-    @RequiresPermissions("system:appUser:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(AppUser appUser)
@@ -58,7 +56,6 @@ public class AppUserController extends BaseController
     /**
      * 导出【请填写功能名称】列表
      */
-    @RequiresPermissions("system:appUser:export")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
@@ -81,7 +78,6 @@ public class AppUserController extends BaseController
     /**
      * 新增保存【请填写功能名称】
      */
-    @RequiresPermissions("system:appUser:add")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -104,7 +100,6 @@ public class AppUserController extends BaseController
     /**
      * 修改保存【请填写功能名称】
      */
-    @RequiresPermissions("system:appUser:edit")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -116,7 +111,6 @@ public class AppUserController extends BaseController
     /**
      * 删除【请填写功能名称】
      */
-    @RequiresPermissions("system:appUser:remove")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
@@ -129,7 +123,6 @@ public class AppUserController extends BaseController
      * 状态修改
      */
     @Log(title = "状态管理", businessType = BusinessType.UPDATE)
-    @RequiresPermissions("system:appUser:edit")
     @PostMapping("/changeStatus")
     @ResponseBody
     public AjaxResult changeStatus(AppUser appUser)
