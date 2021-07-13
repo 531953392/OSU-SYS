@@ -1,43 +1,40 @@
 package com.ruoyi.web.controller.osuApplet;
 
-import java.util.List;
-
-import com.ruoyi.system.domain.osu.AppApplyInfo;
-import com.ruoyi.system.service.osu.IAppApplyInfoService;
+import com.ruoyi.common.annotation.Log;
+import com.ruoyi.common.core.controller.BaseController;
+import com.ruoyi.common.core.domain.AjaxResult;
+import com.ruoyi.common.core.page.TableDataInfo;
+import com.ruoyi.common.enums.BusinessType;
+import com.ruoyi.common.utils.poi.ExcelUtil;
+import com.ruoyi.system.domain.osu.AppArticle;
+import com.ruoyi.system.domain.osu.AppEnroll;
+import com.ruoyi.system.service.osu.IAppEnrollService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import com.ruoyi.common.annotation.Log;
-import com.ruoyi.common.enums.BusinessType;
-import com.ruoyi.common.core.controller.BaseController;
-import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.common.utils.poi.ExcelUtil;
-import com.ruoyi.common.core.page.TableDataInfo;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
- * 【请填写功能名称】Controller
+ * 【报名题目】Controller
  * 
  * @author dxs
  * @date 2021-05-31
  */
 @Controller
-@RequestMapping("/system/info")
-public class AppApplyInfoController extends BaseController
+@RequestMapping("/system/enroll")
+public class AppEnrollController extends BaseController
 {
-    private String prefix = "system/osu/info";
+    private String prefix = "system/osu/enroll";
 
     @Autowired
-    private IAppApplyInfoService appApplyInfoService;
+    private IAppEnrollService iAppEnrollService;
 
     @GetMapping()
     public String info()
     {
-        return prefix + "/info";
+        return prefix + "/enroll";
     }
 
     /**
@@ -45,10 +42,10 @@ public class AppApplyInfoController extends BaseController
      */
     @PostMapping("/list")
     @ResponseBody
-    public TableDataInfo list(AppApplyInfo appApplyInfo)
+    public TableDataInfo list(AppEnroll appEnroll)
     {
         startPage();
-        List<AppApplyInfo> list = appApplyInfoService.selectAppApplyInfoList(appApplyInfo);
+        List<AppEnroll> list = iAppEnrollService.selectAppEnrollList(appEnroll);
         return getDataTable(list);
     }
 
@@ -58,10 +55,10 @@ public class AppApplyInfoController extends BaseController
     @Log(title = "【请填写功能名称】", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
-    public AjaxResult export(AppApplyInfo appApplyInfo)
+    public AjaxResult export(AppEnroll appEnroll)
     {
-        List<AppApplyInfo> list = appApplyInfoService.selectAppApplyInfoList(appApplyInfo);
-        ExcelUtil<AppApplyInfo> util = new ExcelUtil<AppApplyInfo>(AppApplyInfo.class);
+        List<AppEnroll> list = iAppEnrollService.selectAppEnrollList(appEnroll);
+        ExcelUtil<AppEnroll> util = new ExcelUtil<AppEnroll>(AppEnroll.class);
         return util.exportExcel(list, "info");
     }
 
@@ -80,9 +77,9 @@ public class AppApplyInfoController extends BaseController
     @Log(title = "【请填写功能名称】", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
-    public AjaxResult addSave(AppApplyInfo appApplyInfo)
+    public AjaxResult addSave(AppEnroll appEnroll)
     {
-        return toAjax(appApplyInfoService.insertAppApplyInfo(appApplyInfo));
+        return toAjax(iAppEnrollService.insertAppEnroll(appEnroll));
     }
 
     /**
@@ -91,8 +88,8 @@ public class AppApplyInfoController extends BaseController
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") String id, ModelMap mmap)
     {
-        AppApplyInfo appApplyInfo = appApplyInfoService.selectAppApplyInfoById(id);
-        mmap.put("appApplyInfo", appApplyInfo);
+        AppEnroll appEnroll = iAppEnrollService.selectAppEnrollById(id);
+        mmap.put("appEnroll", appEnroll);
         return prefix + "/edit";
     }
 
@@ -102,9 +99,9 @@ public class AppApplyInfoController extends BaseController
     @Log(title = "【请填写功能名称】", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
-    public AjaxResult editSave(AppApplyInfo appApplyInfo)
+    public AjaxResult editSave(AppEnroll appEnroll)
     {
-        return toAjax(appApplyInfoService.updateAppApplyInfo(appApplyInfo));
+        return toAjax(iAppEnrollService.updateAppEnroll(appEnroll));
     }
 
     /**
@@ -115,6 +112,17 @@ public class AppApplyInfoController extends BaseController
     @ResponseBody
     public AjaxResult remove(String ids)
     {
-        return toAjax(appApplyInfoService.deleteAppApplyInfoByIds(ids));
+        return toAjax(iAppEnrollService.deleteAppEnrollByIds(ids));
+    }
+
+    /**
+     * 状态修改
+     */
+    @Log(title = "状态管理", businessType = BusinessType.UPDATE)
+    @PostMapping("/changeStatus")
+    @ResponseBody
+    public AjaxResult changeStatus(AppEnroll appEnroll)
+    {
+        return toAjax(iAppEnrollService.changeStatus(appEnroll));
     }
 }

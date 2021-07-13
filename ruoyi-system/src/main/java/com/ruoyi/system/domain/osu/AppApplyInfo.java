@@ -1,4 +1,4 @@
-package com.ruoyi.system.osu.domain;
+package com.ruoyi.system.domain.osu;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

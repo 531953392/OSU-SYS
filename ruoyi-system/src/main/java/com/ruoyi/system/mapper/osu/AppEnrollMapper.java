@@ -1,8 +1,8 @@
 package com.ruoyi.system.mapper.osu;
 
-import java.util.List;
+import com.ruoyi.system.domain.osu.AppEnroll;
 
-import com.ruoyi.system.domain.osu.AppApplyInfo;
+import java.util.List;
 
 /**
  * 【请填写功能名称】Mapper接口
@@ -10,7 +10,7 @@ import com.ruoyi.system.domain.osu.AppApplyInfo;
  * @author dxs
  * @date 2021-05-31
  */
-public interface AppApplyInfoMapper 
+public interface AppEnrollMapper
 {
     /**
      * 查询【请填写功能名称】
@@ -18,31 +18,31 @@ public interface AppApplyInfoMapper
      * @param id 【请填写功能名称】ID
      * @return 【请填写功能名称】
      */
-    public AppApplyInfo selectAppApplyInfoById(String id);
+    public AppEnroll selectAppEnrollById(String id);
 
     /**
      * 查询【请填写功能名称】列表
      * 
-     * @param appApplyInfo 【请填写功能名称】
+     * @param appEnroll 【请填写功能名称】
      * @return 【请填写功能名称】集合
      */
-    public List<AppApplyInfo> selectAppApplyInfoList(AppApplyInfo appApplyInfo);
+    public List<AppEnroll> selectAppEnrollList(AppEnroll appEnroll);
 
     /**
      * 新增【请填写功能名称】
      * 
-     * @param appApplyInfo 【请填写功能名称】
+     * @param appEnroll 【请填写功能名称】
      * @return 结果
      */
-    public int insertAppApplyInfo(AppApplyInfo appApplyInfo);
+    public int insertAppEnroll(AppEnroll appEnroll);
 
     /**
      * 修改【请填写功能名称】
      * 
-     * @param appApplyInfo 【请填写功能名称】
+     * @param AppEnroll 【请填写功能名称】
      * @return 结果
      */
-    public int updateAppApplyInfo(AppApplyInfo appApplyInfo);
+    public int updateAppEnroll(AppEnroll appEnroll);
 
     /**
      * 删除【请填写功能名称】
@@ -50,7 +50,7 @@ public interface AppApplyInfoMapper
      * @param id 【请填写功能名称】ID
      * @return 结果
      */
-    public int deleteAppApplyInfoById(String id);
+    public int deleteAppEnrollById(String id);
 
     /**
      * 批量删除【请填写功能名称】
@@ -58,5 +58,5 @@ public interface AppApplyInfoMapper
      * @param ids 需要删除的数据ID
      * @return 结果
      */
-    public int deleteAppApplyInfoByIds(String[] ids);
+    public int deleteAppEnrollByIds(String[] ids);
 }

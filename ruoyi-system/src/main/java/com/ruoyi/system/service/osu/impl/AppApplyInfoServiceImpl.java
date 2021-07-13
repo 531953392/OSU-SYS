@@ -1,13 +1,14 @@
-package com.ruoyi.system.osu.service.impl;
+package com.ruoyi.system.service.osu.impl;
 
-import java.util.List;
 import com.ruoyi.common.utils.DateUtils;
+import com.ruoyi.system.domain.osu.AppApplyInfo;
+import com.ruoyi.system.mapper.osu.AppApplyInfoMapper;
+import com.ruoyi.system.service.osu.IAppApplyInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.system.osu.mapper.AppApplyInfoMapper;
-import com.ruoyi.system.osu.domain.AppApplyInfo;
-import com.ruoyi.system.osu.service.IAppApplyInfoService;
 import com.ruoyi.common.core.text.Convert;
+
+import java.util.List;
 
 /**
  * 【请填写功能名称】Service业务层处理
@@ -16,7 +17,7 @@ import com.ruoyi.common.core.text.Convert;
  * @date 2021-05-31
  */
 @Service
-public class AppApplyInfoServiceImpl implements IAppApplyInfoService 
+public class AppApplyInfoServiceImpl implements IAppApplyInfoService
 {
     @Autowired
     private AppApplyInfoMapper appApplyInfoMapper;
