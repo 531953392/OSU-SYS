@@ -2,15 +2,12 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.system.mapper.osu.AppEnrollMapper">
+<mapper namespace="com.ruoyi.system.mapper.osu.AppEnrollListMapper">
     
-    <resultMap type="AppEnroll" id="AppEnrollResult">
+    <resultMap type="AppEnrollList" id="AppEnrollListResult">
         <result property="id"    column="id"    />
-        <result property="enroll_id"    column="enroll_id"    />
-        <result property="enroll_title"    column="enroll_title"    />
-        <result property="problem"    column="problem"    />
+        <result property="title"    column="title"    />
         <result property="sort"    column="sort"    />
-        <result property="remark"    column="remark"    />
         <result property="createBy"    column="create_by"    />
         <result property="createTime"    column="create_time"    />
         <result property="updateBy"    column="update_by"    />
@@ -19,33 +16,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectAppEnrollVo">
-        select id, enroll_id,enroll_title, problem, sort, remark, create_by, create_time, update_by, update_time, status from app_enroll
+        select id, title, sort, create_by, create_time, update_by, update_time, status from app_enroll_list
     </sql>
 
-    <select id="selectAppEnrollList" parameterType="AppEnroll" resultMap="AppEnrollResult">
+    <select id="selectAppEnrollList" parameterType="AppEnrollList" resultMap="AppEnrollListResult">
         <include refid="selectAppEnrollVo"/>
         <where>  
             <if test="id != null  and id != ''"> and id = #{id}</if>
-            <if test="enroll_id != null  and enroll_id != ''"> and enroll_id = #{enroll_id}</if>
-            <if test="enroll_title != null  and enroll_title != ''"> and enroll_title like concat('%', #{enroll_title}, '%')</if>
+            <if test="title != null  and title != ''"> and title like concat('%', #{title}, '%')</if>
             <if test="status != null  and status != ''"> and status = #{status}</if>
         </where>
     </select>
     
-    <select id="selectAppEnrollById" parameterType="String" resultMap="AppEnrollResult">
+    <select id="selectAppEnrollById" parameterType="String" resultMap="AppEnrollListResult">
         <include refid="selectAppEnrollVo"/>
         where id = #{id}
     </select>
+
         
-    <insert id="insertAppEnroll" parameterType="AppEnroll">
-        insert into app_enroll
+    <insert id="insertAppEnroll" parameterType="AppEnrollList">
+        insert into app_enroll_list
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">id,</if>
-            <if test="enroll_id != null">enroll_id,</if>
-            <if test="enroll_title != null">enroll_title,</if>
-            <if test="problem != null">problem,</if>
+            <if test="title != null">title,</if>
             <if test="sort != null">sort,</if>
-            <if test="remark != null">remark,</if>
             <if test="createBy != null">create_by,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateBy != null">update_by,</if>
@@ -54,11 +48,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">#{id},</if>
-            <if test="enroll_id != null">#{enroll_id},</if>
-            <if test="enroll_title != null">#{enroll_title},</if>
-            <if test="problem != null">#{problem},</if>
+            <if test="title != null">#{title},</if>
             <if test="sort != null">#{sort},</if>
-            <if test="remark != null">#{remark},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateBy != null">#{updateBy},</if>
@@ -67,15 +58,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
     </insert>
 
-    <update id="updateAppEnroll" parameterType="AppEnroll">
-        update app_enroll
+    <update id="updateAppEnroll" parameterType="AppEnrollList">
+        update app_enroll_list
         <trim prefix="SET" suffixOverrides=",">
             <if test="id != null">id = #{id},</if>
-            <if test="enroll_id != null">enroll_id = #{enroll_id},</if>
-            <if test="enroll_title != null">enroll_title = #{enroll_title},</if>
-            <if test="problem != null">problem = #{problem},</if>
+            <if test="title != null">title = #{title},</if>
             <if test="sort != null">sort = #{sort},</if>
-            <if test="remark != null">remark = #{remark},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>
@@ -86,11 +74,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteAppEnrollById" parameterType="String">
-        delete from app_enroll where id = #{id}
+        delete from app_enroll_list where id = #{id}
     </delete>
 
     <delete id="deleteAppEnrollByIds" parameterType="String">
-        delete from app_enroll where id in
+        delete from app_enroll_list where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

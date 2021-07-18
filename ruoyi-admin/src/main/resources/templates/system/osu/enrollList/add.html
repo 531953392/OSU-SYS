@@ -6,27 +6,14 @@
 <body class="white-bg">
     <div class="wrapper wrapper-content animated fadeInRight ibox-content">
         <form class="form-horizontal m" id="form-info-add">
-            <input id="enroll_id" name="enroll_id"  type="hidden"  th:field="*{appEnrollList.id}" />
             <div class="form-group">
                 <label class="col-sm-3 control-label">报名标题：</label>
                 <div class="col-sm-8">
-                    <input id="enroll_title" name="enroll_title" class="form-control" type="text" th:value="${appEnrollList.title}" disabled>
+                    <input name="title" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">报名题目：</label>
-                <div class="col-sm-8">
-                    <input name="problem" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">备注：</label>
-                <div class="col-sm-8">
-                    <input name="remark" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label ">状态：</label>
+                <label class="col-sm-3 control-label ">报名状态：</label>
                 <div class="col-sm-8">
                     <label class="toggle-switch switch-solid">
                         <input type="checkbox" id="status" checked  >
@@ -46,7 +33,7 @@
     </div>
     <th:block th:include="include :: footer" />
     <script th:inline="javascript">
-        var prefix = ctx + "system/enroll"
+        var prefix = ctx + "system/enrollList"
         $("#form-info-add").validate({
             focusCleanup: true
         });
@@ -55,11 +42,7 @@
             if ($.validate.form()) {
                 var status = $("input[id='status']").is(':checked') == true ? 0 : 1
                 var data = $("#form-info-add").serializeArray();
-                var enroll_id = $("#enroll_id").val();
-                var enroll_title = $("#enroll_title").val();
                 data.push({"name": "status", "value": status});
-                data.push({"name": "enroll_id", "value": enroll_id});
-                data.push({"name": "enroll_title", "value": enroll_title});
                 $.operate.save(prefix + "/add",data);
             }
         }
