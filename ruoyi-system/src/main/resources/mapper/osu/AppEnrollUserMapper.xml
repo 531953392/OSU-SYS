@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.osu.AppEnrollUserMapper">
+    
+    <resultMap type="AppEnrollUser" id="AppEnrollUserResult">
+        <result property="id"    column="id"    />
+        <result property="user_id"    column="user_id"    />
+        <result property="enroll_id"    column="enroll_id"    />
+        <result property="enroll_title"    column="enroll_title"    />
+        <result property="enroll_value"    column="enroll_value"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="user_name"    column="user_name"    />
+        <result property="user_nick_name"    column="user_nick_name"    />
+        <result property="user_avatar_url"    column="user_avatar_url"    />
+    </resultMap>
+
+    <sql id="selectAppEnrollVo">
+        select id, user_id, enroll_title,enroll_value, create_time, user_name, user_nick_name, user_avatar_url from app_enroll_user
+    </sql>
+
+    <select id="selectAppEnrollList" parameterType="AppEnrollUser" resultMap="AppEnrollUserResult">
+        <include refid="selectAppEnrollVo"/>
+        <where>  
+            <if test="id != null  and id != ''"> and id = #{id}</if>
+            <if test="enroll_title != null  and enroll_title != ''"> and enroll_title like concat('%', #{enroll_title}, '%')</if>
+            <if test="enroll_id != null  and enroll_id != ''"> and enroll_id = #{enroll_id}</if>
+        </where>
+    </select>
+    
+    <select id="selectAppEnrollById" parameterType="String" resultMap="AppEnrollUserResult">
+        <include refid="selectAppEnrollVo"/>
+        where id = #{id} order by so
+    </select>
+
+
+</mapper>
