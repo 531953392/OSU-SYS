@@ -1,6 +1,11 @@
 package com.ruoyi.system.domain.osu;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
+
+import javax.xml.crypto.Data;
+import java.util.Date;
 
 /**
  * 【请填写功能名称】对象 app_apply_info
@@ -15,12 +20,18 @@ public class AppEnrollUser extends BaseEntity
     private String id;
     private String user_id;
     private String enroll_id;
-    private String enroll_title;
-    private String enroll_value;
-    private String create_time;
-    private String user_name;
-    private String user_nick_name;
+    @Excel(name = "报名日期", width = 30, dateFormat = "yyyy-MM-dd")
+    private Date create_time;
+//    @Excel(name = "用户头像")
     private String user_avatar_url;
+    @Excel(name = "用户微信昵称")
+    private String user_nick_name;
+    @Excel(name = "用户手机号")
+    private String user_name;
+    @Excel(name = "报名问题")
+    private String enroll_title;
+    @Excel(name = "报名回答")
+    private String enroll_value;
 
     public String getId() {
         return id;
@@ -62,11 +73,11 @@ public class AppEnrollUser extends BaseEntity
         this.enroll_value = enroll_value;
     }
 
-    public String getCreate_time() {
+    public Date getCreate_time() {
         return create_time;
     }
 
-    public void setCreate_time(String create_time) {
+    public void setCreate_time(Date create_time) {
         this.create_time = create_time;
     }
 

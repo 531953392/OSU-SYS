@@ -35,6 +35,7 @@ public class AppEnrollUserController extends BaseController
     @Autowired
     private IAppEnrollListService iAppEnrollService1;
 
+
     @GetMapping()
     public String info(ModelMap map)
     {
@@ -66,7 +67,11 @@ public class AppEnrollUserController extends BaseController
     {
         List<AppEnrollUser> list = iAppEnrollService.selectAppEnrollList(appEnroll);
         ExcelUtil<AppEnrollUser> util = new ExcelUtil<AppEnrollUser>(AppEnrollUser.class);
-        return util.exportExcel(list, "info");
+        AppEnrollList appEnrollList = null;
+        if(list.size()!=0){
+             appEnrollList = iAppEnrollService1.selectAppEnrollById(list.get(0).getEnroll_id());
+        }
+        return util.exportExcel(list, appEnrollList==null?"报名活动导出":appEnrollList.getTitle());
     }
 
 

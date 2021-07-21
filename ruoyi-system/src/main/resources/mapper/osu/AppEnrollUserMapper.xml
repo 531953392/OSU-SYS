@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="enroll_id"    column="enroll_id"    />
         <result property="enroll_title"    column="enroll_title"    />
         <result property="enroll_value"    column="enroll_value"    />
-        <result property="createTime"    column="create_time"    />
+        <result property="create_time"    column="create_time"    />
         <result property="user_name"    column="user_name"    />
         <result property="user_nick_name"    column="user_nick_name"    />
         <result property="user_avatar_url"    column="user_avatar_url"    />
