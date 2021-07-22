@@ -38,7 +38,7 @@
 <!--            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()">-->
 <!--                <i class="fa fa-remove"></i> 删除-->
 <!--            </a>-->
-            <a class="btn btn-success" onclick="$.table.exportExcel()">
+            <a class="btn btn-success" onclick="exportExcel()" >
                 <i class="fa fa-download"></i> 导出
             </a>
         </div>
@@ -122,6 +122,15 @@
         };
         $.table.init(options);
     });
+
+    function exportExcel() {
+        $.modal.confirm("确定导出所有" + table.options.modalName + "吗？", function () {
+            $.modal.loading("正在导出数据，请稍后...");
+            var enroll_id = $("#enroll_id").val();
+            location.href = prefix + "/export?enroll_id=" + enroll_id;
+            $.modal.closeLoading();
+        });
+    }
 
     /**
      * 合并单元格
